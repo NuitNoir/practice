@@ -1,0 +1,15 @@
+18:56:16 **** Incremental Build of configuration Debug for project asign0410 ****
+make all 
+Building file: ../PGM.cpp
+Invoking: Cross G++ Compiler
+g++ -O0 -g3 -Wall -c -fmessage-length=0 -MMD -MP -MF"PGM.d" -MT"PGM.d" -o "PGM.o" "../PGM.cpp"
+Finished building: ../PGM.cpp
+ 
+Building target: asign0410
+Invoking: Cross G++ Linker
+g++  -o "asign0410"  ./PGM.o   
+Finished building target: asign0410
+ 
+
+18:56:16 Build Finished (took 403ms)
+

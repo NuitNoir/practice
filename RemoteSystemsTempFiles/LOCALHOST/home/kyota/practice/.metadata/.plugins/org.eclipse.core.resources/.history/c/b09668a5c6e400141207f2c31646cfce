@@ -1,0 +1,12 @@
+/*
+ * boost_practice.cpp
+
+ *
+ *  Created on: 2015/04/17
+ *      Author: kyota
+ */
+#include <boost/numeric/ublas/matrix.hpp>
+#include <boost/numeric/ublas/vector.hpp>
+
+
+

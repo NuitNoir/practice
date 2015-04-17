@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/CWD/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/CWD/operation=replace
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/CWD/value=/home/kyota/practice/asign0417/Debug
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/PATH/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/PATH/operation=replace
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/PATH/value=/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/usr/games\:/usr/local/games\:/home/kyota/boost-sandbox/numeric_bindings/libs
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/append=true
+environment/project/cdt.managedbuild.config.gnu.cross.exe.debug.1181981807/appendContributed=true

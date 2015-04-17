@@ -1,0 +1,140 @@
+/*
+ * PGM.hpp
+ *
+ *  Created on: 2015/04/10
+ *      Author: kyota
+ */
+
+#ifndef PGM_HPP
+#define PGM_HPP
+
+#include <cstdlib>
+#include <valarray>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <cassert>
+//#include<opencv>
+#include <opencv2/core/core.hpp>
+
+namespace PNM{
+std::string get_token(std::istream &ifs) {
+	std::string token;
+	ifs >> token;
+	//skip comment
+	while(token[0] == '#') {
+		while (ifs.get() != '\n'); //empty loop
+		ifs >> token;
+	}
+	return token;
+}
+
+
+class PGM{
+private:
+	std::string magick_num;
+	int width;
+	int height;
+	std::string max;
+	cv::Mat mat;
+private:
+	   //forbid default constractor
+public:
+	//constructors
+	PGM(int w, int h)
+: width(w), height(h), mat(h, w, CV_8UC1, 0)
+{}
+
+	//ファイル名fnからファイルを取得し、書き込む。
+	explicit PGM(const std::string &fn) {
+		std::ifstream ifs(fn.c_str(), std::ios::binary);
+		if(ifs.fail()) {
+			std::cerr << "file open error" << std::endl;
+			std::abort();
+		}
+
+
+		//write myself code
+		magick_num = get_token(ifs);
+		width = std::atoi(get_token(ifs).c_str());
+		height = std::atoi(get_token(ifs).c_str());
+		if (magick_num != "P1" && magick_num != "P3") {
+			max = get_token(ifs);
+		}
+
+		int char *buf = new int char[width*height];
+
+		//cv::Mat
+		cv::Mat mat(height, width, CV_8UC1, 0);
+		for (int i=0; i < width*height; i++) {
+			ifs.read( (char *)buf, 1);
+			mat(i/width, i%width) = *buf;
+		}
+		ifs.close();
+
+
+		//デバッグ用の値出力
+		std::cout << magick_num << std::endl;
+		std::cout << width << std::endl;
+		std::cout << height << std::endl;
+		std::cout << max << std::endl;
+	}
+
+	PGM(const PGM &p)
+	: width(p.width), height(p.height), mat(p.height, p.width, CV_8UC1, 0)
+	{}
+
+	//destructor
+	~PGM(){}
+
+	//write PGM data
+	void write(const std::string &fn)const
+	{
+		std::ofstream outfile("copy_cat1.pgm");
+
+		outfile << magick_num << std::endl << width << ' ' << height << std::endl << max ;
+		for (int i=0; i<mat.size(); i++) {
+			outfile.write( (char *)&mat(i/width, i%width), 1);
+		}
+	}
+	//invert gray scale
+	void invert(const std::string &fn)
+	{
+		std::ofstream ofs("invert_cat1.pgm");
+
+		ofs << magick_num << std::endl << width << ' ' << height << std::endl << max << std::endl;
+		for (int i=0; i<data.size(); i++) {
+			std::cout << (255-data[i]) << std::endl;
+			inv_data[i] = (255 - data[i]);
+			//std::cout << inv_data[i];
+		}
+
+		for (int i=0; i<data.size(); i++) {
+			ofs.write( (char *)&inv_data[i], 1);
+		}
+	}
+
+
+	int getWidth() const {return width; }
+	int getHeight() const { return height; }
+
+	//access operators
+	const int char& operator()(int x, int y) const {
+		assert( 0 <= x ); assert( x < static_cast<int>(width));
+		assert( 0 <= y ); assert( y < static_cast<int>(height));
+
+		return data[width*y + x];
+	}
+
+	int char& operator()(int x, int y){
+		assert( 0 <= x ); assert( x < static_cast<int>(width) );
+		assert( 0 <= y ); assert( y < static_cast<int>(height));
+
+		return data[width*y + x];
+	}
+}; // end of class PGM
+} // end of namespace PNM
+
+
+
+#endif /* PGM_HPP_ */

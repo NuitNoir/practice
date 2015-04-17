@@ -1,0 +1,26 @@
+/*
+ * math.hpp
+ *
+ *  Created on: 2015/04/17
+ *      Author: kyota
+ */
+
+#ifndef MATH_HPP_20090501
+#define MATH_HPP_20090501
+
+#if defined(_MSC_VER) && (_MSC_VER >= 1020)
+# pragma once
+#endif
+
+
+#include <boost/numeric/ublas/fwd.hpp>
+
+
+namespace math {
+    void svd(const boost::numeric::ublas::matrix<double>& A, boost::numeric::ublas::matrix<double>& U, boost::numeric::ublas::diagonal_matrix<double>& D, boost::numeric::ublas::matrix<double>& VT);
+}
+
+
+#endif
+
+
