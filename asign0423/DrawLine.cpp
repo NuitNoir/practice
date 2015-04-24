@@ -30,7 +30,8 @@ int main() {
 		draw_line_bres(dst, arr[i][0], arr[i][1], arr[i][2], arr[i][3], l);
 
 	}
-	//draw_circle(dst, 200, 200, 180, l);
+	draw_circle(dst, 200, 200, 180, l);
+	draw_circle(dst, 300, 100, 100, l);
 
 	//cv::imwrite("line_bres.png", dst);
 	cv::imwrite("lines.png", dst);
@@ -52,7 +53,6 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 		double y = (double)y1;
 		//slope < 1 to right
 		if (diff_x >= 0) {
-
 			for (int i=0; i<diff_x; i++) {
 
 				std::cout << slope << std::endl;
@@ -73,7 +73,6 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 					err = err + 1;
 				}
 
-				//y += slope;
 			}
 		} else {
 			// slope < 1 to left
@@ -94,7 +93,7 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 				} else if (diff_y < 0 && err < 1/2) {
 					// down left
 					y -= 1;
-					err += + 1;
+					err += 1;
 				}
 			}
 		}
@@ -111,7 +110,7 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 
 				dst.at<unsigned char>(static_cast<int>(y + 0.5), x) = l;
 				y++;
-				err += slope;
+				err += 1/slope;
 				if (diff_x >= 0 && err > 1/2) {
 					// up right
 					x += 1;
@@ -121,7 +120,6 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 					x -= 1;
 					err += 1;
 				}
-
 			}
 		} else {
 			//slope > 1 down
@@ -133,7 +131,7 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 				dst.at<unsigned char>(static_cast<int>(y + 0.5), x) = l;
 
 				y--;
-				err -= slope;
+				err -= 1/slope;
 				if (diff_x >= 0 && err > 1/2) {
 					// up right
 					x += 1;

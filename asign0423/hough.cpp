@@ -16,3 +16,4 @@ void Hough(cv::Mat src) {
 	//GaussianBlur(src, dst,cv::Size(5,5), 10, 10, 0);
 	cv::imwrite("hough.pgm", dst);
 }
+
