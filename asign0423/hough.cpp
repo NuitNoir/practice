@@ -32,15 +32,15 @@ void Hough(cv::Mat &src) {
 	for (int i=0; i<(int)lines.size(); i++) {
 		double r = lines[i][0];
 		double theta = lines[i][1];
-		double tan = sin(theta)/cos(theta);
-		cv::Point p1;
-		cv::Point p2;
+		//double tan = sin(theta)/cos(theta);
+		cv::Point2i p1;
+		cv::Point2i p2;
 		p1.x = r/cos(theta);
 		p1.y = 0;
 		p2.x = 0;
 		p2.y = r/sin(theta);
 
-		//std::cout << lines[i] << std::endl;
+		std::cout << lines[i] <<' '<< p1 << ' '<<p2 << std::endl;
 		//std::cout << x1 << ' ' << y1 << ' '<< x2<<' ' << y2<<' ' << std::endl;
 		cv::line(src, p1, p2, 10);
 		//draw_line(src, x1, y1, x2, y2, 1);
