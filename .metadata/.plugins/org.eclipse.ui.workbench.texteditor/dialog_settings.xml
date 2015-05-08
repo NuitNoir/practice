@@ -13,8 +13,9 @@
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="cat" key="selection"/>
+		<item value="main" key="selection"/>
 		<list key="findhistory">
+			<item value="main"/>
 			<item value="cat"/>
 			<item value="&amp;mat"/>
 			<item value="unsined char"/>
@@ -22,7 +23,6 @@
 			<item value="data"/>
 			<item value="unsigned"/>
 			<item value="write"/>
-			<item value="writer"/>
 		</list>
 		<list key="replacehistory">
 			<item value="unsigned char"/>

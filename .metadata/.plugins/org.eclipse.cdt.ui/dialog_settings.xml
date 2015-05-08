@@ -4,15 +4,33 @@
 	<item value="Default C++ header template" key="LastUsedHeaderTemplate"/>
 	<section name="completion_proposal_size">
 	</section>
+	<section name="org.eclipse.cdt.internal.ui.browser.opentype.OpenTypeActionSettings">
+		<item value="true" key="show_structs"/>
+		<item value="true" key="show_lowlevel"/>
+		<item value="true" key="show_macros"/>
+		<item value="true" key="show_variables"/>
+		<item value="583" key="width"/>
+		<item value="true" key="show_functions"/>
+		<item value="true" key="show_enums"/>
+		<item value="763" key="height"/>
+		<item value="true" key="show_classes"/>
+		<item value="true" key="show_typedefs"/>
+		<item value="true" key="show_namespaces"/>
+		<item value="true" key="show_unions"/>
+		<item value="20" key="y"/>
+		<item value="383" key="x"/>
+	</section>
 	<section name="PDOMSearchPage">
 	</section>
 	<section name="org.eclipse.cdt.internal.ui.text.QuickOutline">
 		<item value="506" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_X_ORIGIN"/>
-		<item value="433" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_Y_ORIGIN"/>
 		<item value="381" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_HEIGHT"/>
+		<item value="433" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_Y_ORIGIN"/>
 		<item value="true" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_USE_PERSISTED_SIZE"/>
 		<item value="296" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_WIDTH"/>
 		<item value="true" key="org.eclipse.cdt.internal.ui.text.COutlineInformationControlDIALOG_USE_PERSISTED_LOCATION"/>
+	</section>
+	<section name="NewClassWizardPage">
 	</section>
 	<section name="org.eclipse.cdt.ui.text.hover.CMacroExpansionExploration">
 	</section>
