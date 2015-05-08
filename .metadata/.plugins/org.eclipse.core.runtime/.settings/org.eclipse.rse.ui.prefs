@@ -1,5 +1,0 @@
-eclipse.preferences.version=1
-org.eclipse.rse.internal.efs.EditorSaver.preferenceEditorList=
-org.eclipse.rse.internal.ui.view.SystemViewFilterReferenceAdapter\:org.eclipse.rse.ui.view.SystemTableView=org.eclipse.rse.ui.filterParentPool;org.eclipse.rse.ui.filterParent;org.eclipse.rse.ui.filterstringsCount;org.eclipse.rse.ui.filterConnectionPrivate
-org.eclipse.rse.preferences.order.connections=kyota-mint-practice.Local;kyota-mint-practice.PrivateSakura
-org.eclipse.rse.preferences.verify.connection=false
