@@ -34,37 +34,35 @@ int main() {
 	cv::Mat src = cv::imread("cat1.pgm", 0);
 	cv::Mat dst = Mat::zeros(src.rows, src.cols, src.type());
 	// Lagrange
-//	M = Translation(200, 200);
-//	dst = TransformL(src, M);
-//	cv::imwrite("affin_trans_lag.png", dst);
-//	M = Rotation(M_PI / 6);
-//	dst = TransformL(src, M);
-//	cv::imwrite("affin_rotate_lag.png", dst);
-
+	M = Translation(200, 200);
+	dst = TransformL(src, M);
+	cv::imwrite("affin_trans_lag.png", dst);
+	M = Rotation(M_PI / 6.0);
+	dst = TransformL(src, M);
+	cv::imwrite("affin_rotate_lag.png", dst);
 	M = Scaling(2, 3);
 	dst = TransformL(src, M);
 	cv::imwrite("affin_larging_lag.png", dst);
-	M = Scaling(1/2, 1/3);
+	M = Scaling(0.5 , 0.5);
 	dst = TransformL(src, M);
 	cv::imwrite("affin_smalling_lag.png", dst);
-	M = Skew(1/6, 2/3);
+	M = Skew(0.7, 0.5);
 	dst = TransformL(src, M);
 	cv::imwrite("affin_skew_lag.png", dst);
 	// Eular
-//	M = invTranslation(200, 200);
-//	dst = TransformE(src, M, 0);
-//	cv::imwrite("affin_trans_euler.png", dst);
-//	M = invRotation(M_PI / 6);
-//	dst = TransformE(src, M, 0);
-//	cv::imwrite("affin_rotate_euler.png", dst);
+	M = invTranslation(200, 200);
+	dst = TransformE(src, M, 0);
+	cv::imwrite("affin_trans_euler.png", dst);
+	M = invRotation(M_PI/6.0);
+	dst = TransformE(src, M, 0);
+	cv::imwrite("affin_rotate_euler.png", dst);
 	M = invScaling(2, 3);
 	dst = TransformE(src, M, 0);
 	cv::imwrite("affin_larging_euler.png", dst);
-	M = invScaling(1/2, 1/3);
+	M = invScaling(0.5, 0.5);
 	dst = TransformE(src, M, 0);
 	cv::imwrite("affin_smalling_euler.png", dst);
-
-	M = invSkew(1/3, 1);
+	M = invSkew(0.7, 0.5);
 	dst = TransformE(src, M, 0);
 	cv::imwrite("affin_skew_euler.png", dst);
 

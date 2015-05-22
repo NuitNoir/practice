@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;asign0417/PGM.hpp&apos;" deleteContents="false" description="Delete resource &apos;asign0417/PGM.hpp&apos;" element1="/asign0417/PGM.hpp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1429250084625"/>&#x0A;<refactoring comment="Delete resource &apos;asign0417/math.hpp&apos;" deleteContents="false" description="Delete resource &apos;asign0417/math.hpp&apos;" element1="/asign0417/math.hpp" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1429254922890"/>
-</session>

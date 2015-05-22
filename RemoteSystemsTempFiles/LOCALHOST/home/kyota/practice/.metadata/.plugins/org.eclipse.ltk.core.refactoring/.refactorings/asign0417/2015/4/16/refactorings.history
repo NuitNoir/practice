@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;asign0417/PGM.cpp&apos; to &apos;cv_practice.cpp&apos;" description="Rename resource &apos;PGM.cpp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="PGM.cpp" name="cv_practice.cpp" stamp="1429250099728" updateReferences="true"/>
-</session>

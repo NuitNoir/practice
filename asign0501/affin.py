@@ -3,21 +3,20 @@ import numpy as np
 import math
 
 def main():
-  img = cv2.imread("masamunya.jpg", 0)
+  img = cv2.imread("../cat/cat1.pgm", 0)
   rows, cols = img.shape
 
   M = np.float32([[1, 0, 100], [0, 1, 50]])
   R = cv2.getRotationMatrix2D((cols / 6, rows / 6), 90, 1)
   # dst = cv2.warpAffine(img, R, (cols,rows))
-#   dst = TransformL(img, M)
-#   cv2.imshow("result_lagrange", dst)
-#   cv2.waitKey(0)
-#   cv2.destroyAllWindows()
-  dst = TransformE(img, M, 1)
-  cv2.imshow("result_euler_bi", dst)
+  dst = TransformL(img, M)
+  cv2.imshow("result_lagrange", dst)
+#  dst = TransformE(img, M, 1)
+#  cv2.imshow("result_euler_bi", dst)
   cv2.waitKey(0)
   cv2.destroyAllWindows()
-# 
+
+
 #   dst = TransformE(img, M, 0)
 #   cv2.imshow("result_euler_nn", dst)
 #   cv2.waitKey(0)
