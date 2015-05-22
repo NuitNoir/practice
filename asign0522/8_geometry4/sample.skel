@@ -1,0 +1,12 @@
+4SKEL
+# Number of Vertices and Polylines
+4 3
+# Vertices
+0 0 1 1
+1 1 -1 1 
+1 -1 -1 1
+-1 -1 -1 1
+# Polylines
+4 0 1 2 3
+2 0 2
+3 0 3 1

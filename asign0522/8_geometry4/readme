@@ -1,0 +1,4 @@
+sample.skel ... skel data file
+skip_comments.hpp ... function of skipComments( &ifstream )
+kadai_template.cpp ... kadai template file of cpp
+hatten_template.cpp ... hatten template file of cpp
