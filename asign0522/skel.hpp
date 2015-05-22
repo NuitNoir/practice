@@ -85,7 +85,7 @@ class SKEL{
 			for (unsigned i=0; i<_vertices.size(); i++) {
 				//cout << T(0,0) << endl;
 				_vertices[i] = T*_vertices[i];
-				cout << _vertices[i][0] << endl;
+				//cout << _vertices[i][0] << endl;
 			}
 		}
 };
