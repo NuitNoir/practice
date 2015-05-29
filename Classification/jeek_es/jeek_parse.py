@@ -1,9 +1,10 @@
 # -*- coding:utf-8 -*- 
 
 import mysql.connector
-import MeCab
-import parse_mod
 import sklearn
+
+from ..parse_mod import parser as pm
+from ..kmeans_cluster import kmeans_cluster as kc
 
 # from parse_mod import parser
 # ## Constants                                                                                                                             
@@ -13,7 +14,7 @@ PARSE_TEXT_ENCODING = 'utf-8'
 def main():
   words = []
   documents = []
-  parser = parse_mod.parser()
+  parser = pm()
   try:
     cnn = mysql.connector.connect(host='localhost',
         port=3306,
@@ -24,7 +25,7 @@ def main():
 
     cur = cnn.cursor()
 
-    cur.execute("""select distinct user_id, user_detail from user_details""")
+    cur.execute("""select distinct user_id, user_detail from user_details limit 100 """)
     rows = cur.fetchall()
 
     for row in rows:
@@ -50,8 +51,7 @@ def main():
     tmp = dictionary.doc2bow(document)
     dense = list(matutils.corpus2dense([tmp], num_terms=len(dictionary)).T[0])
     vectors.append(dense)
-    # print dense
-    
+
    # LSI
   lsi_docs = {}
   num_group = 2

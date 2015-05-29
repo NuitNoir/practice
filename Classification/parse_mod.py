@@ -3,7 +3,7 @@ import MeCab
 
 class parser:
   def __init__(self):
-    global mecab 
+    global mecab
     mecab = MeCab.Tagger('mecabrc')
     print 'construct parser'
 
@@ -13,10 +13,10 @@ class parser:
     encode_text = text.encode('utf-8')
     node = mecab.parseToNode(encode_text)
     while node:
-      if node.feature.split(',')[0] == '名詞': 
+      if node.feature.split(',')[0] == '名詞':
         #node.decode('utf-8')
         #yield node.feature.split # .decode('utf-8')
-        #print node.surface + '\t' + node.feature  
+        #print node.surface + '\t' + node.feature
         yield node.surface
       node = node.next
 
@@ -29,11 +29,11 @@ class parser:
   def get_words_main(self, content):
     #print content
     tokens = []
-    
+
     #return [token for token in self.tokenize(content)]
     try:
       for token in self.tokenize(content):
-        # token <-- yield node.surface 
+        # token <-- yield node.surface
         # print token
         tokens.append(token)
       #print tokens
