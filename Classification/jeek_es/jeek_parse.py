@@ -20,7 +20,7 @@ def main():
         port=3306,
         db="jeek_development",
         user='kyota',
-        passwd='ciel6571')
+        passwd=ENV['kyota_pswd')
     #      charset="UTF8")
 
     cur = cnn.cursor()
