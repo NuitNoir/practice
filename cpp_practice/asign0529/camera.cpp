@@ -16,11 +16,13 @@ int main() {
 	SKEL skel2 = SKEL("world.skel");
 	SKEL skel3 = SKEL("T.skel");
 	SKEL skel4 = SKEL("T_.skel");
+	SKEL skel5 = SKEL("square.skel");
 	vector<SKEL> skels;
 //	skels.push_back(skel);
 	skels.push_back(skel2);
-	skels.push_back(skel3);
-	skels.push_back(skel4);
+	// skels.push_back(skel3);
+	// skels.push_back(skel4);
+	skels.push_back(skel5);
 	/////////// make camera
 	Camera c1;
 	Camera c2;
@@ -38,7 +40,7 @@ int main() {
 
 	Matx44d T  = Translation(0, 0, 0.1); 
 	Matx44d T2  = RotationX(0.01);
-	//R = R*T;
+	//R = R*T ;
 
 	for (unsigned i=0; i<100; i++) {
 		cv::Mat img(500, 500, CV_8UC1, 1);

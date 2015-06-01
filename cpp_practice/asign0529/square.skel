@@ -1,0 +1,13 @@
+4SKEL
+# Vertices_num, Polyline_num
+4 1
+##### Vertices
+0 0 0 1
+2 0 0 1
+0 2 0 1
+2 2 0 1
+#### Polyline
+4 0 1 2 3
+#2 1 2
+#2 2 3
+#2 3 0
