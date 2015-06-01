@@ -23,21 +23,27 @@ int main() {
 	skels.push_back(skel4);
 	/////////// make camera
 	Camera c1;
+	Camera c2;
 	c1.set_size(500, 500);
+	c2.set_size(500, 500);
 	c1.set_intrinsic(0.5, 3., 2., 0., 1., 1.); // f, ku, kv, s, u0, v0
+	c2.set_intrinsic(2. , 1., 1., 0., 1., 1.);
+
 	// make location
 	Matx44d R = Translation(-1, -1, -10);
-	//Matx44d R = Translation(1, -10, -1);
-	//R = R*RotationY(3.14/2);
+	Matx44d R2 = Translation(1, -10, -1);
+	R2 = R2*RotationY(3.14/2);
 	c1.set_location(R);
-	Matx44d T  = Translation(0, 0, 0.1);
-	//Matx44d T  = RotationX(0.01);
+	c2.set_location(R2);
+
+	Matx44d T  = Translation(0, 0, 0.1); 
+	Matx44d T2  = RotationX(0.01);
 	//R = R*T;
 
 	for (unsigned i=0; i<100; i++) {
 		cv::Mat img(500, 500, CV_8UC1, 1);
 		c1.transform(T);
-		//c1.transform(T);
+		c2.transform(T2);
 		//cout << i << endl;
 		draw_skels_perspective(img, skels, c1, 255);
 		Point2f P(1, 0);

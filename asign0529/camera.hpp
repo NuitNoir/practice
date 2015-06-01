@@ -11,6 +11,7 @@ using namespace tutor;
 using namespace std;
 using namespace cv;
 
+void draw_skel_perspective(Mat &img, const SKEL &skel, unsigned char gray);
 class Camera {
 	private:
 		unsigned _width, _height;
@@ -30,8 +31,8 @@ class Camera {
 		}
 		Matx33d set_intrinsic(double f, double ku, double kv, double s, double u0, double v0) {
 			return _intrinsic = Matx33d(f*ku, f*s, u0,
-															0, f*kv, v0,
-															0, 0, 1);
+																	0, f*kv, v0,
+																	0, 0, 1);
 		}
 		void set_location(Matx44d M) {
 			_location = M;
@@ -39,6 +40,23 @@ class Camera {
 		void transform(Matx44d &T) {
 			_location = T*_location;
 		}
+		void draw_skels_perspective(Mat& img, const vector<SKEL>& skels, const Camera& C, unsigned char gray) {
+			Matx34d I0(1, 0, 0, 0,
+										0, 1, 0, 0,
+										0, 0, 1, 0);
+			Matx43d I1(1, 0, 0,
+										0, 1, 0,
+										0, 0, 1,
+										0, 0, 0);
+			Camera _c = C;
+			for (unsigned i=0; i<skels.size(); i++) {
+				Matx44d R = I1*_c.get_intrinsic()*I0*_c.get_location();
+				SKEL _skel = skels[i];
+				_skel.transform(R);
+				draw_skel_perspective(img, _skel, gray);
+			}
+		}
+		
 /*
 		void Rotate(Matx44d &R0) {
 			Matx44d T = _location;
@@ -71,11 +89,9 @@ class Camera {
 };
 
 
-void draw_skel_perspective(Mat &img, const SKEL &skel, unsigned char gray);
 void draw_skels_perspective(Mat& img, const vector<SKEL>& skels, const Camera& C, unsigned char gray);
 
 void draw_skels_perspective(Mat& img, const vector<SKEL>& skels, const Camera& C, unsigned char gray) {
-	// for skel in skels {
 	Matx34d I0(1, 0, 0, 0,
 								0, 1, 0, 0,
 								0, 0, 1, 0);

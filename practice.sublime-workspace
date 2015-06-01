@@ -1,0 +1,370 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "",
+			"file": "/Users/kyota/GitHub/laboratory/read_file.hpp",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/kyota/GitHub/laboratory/read_file.cpp",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix",
+				"name": "#include \"read_file.hpp\""
+			}
+		},
+		{
+			"file": "asign0522/skel.hpp",
+			"settings":
+			{
+				"buffer_size": 2032,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "asign0522/cg.hpp",
+			"settings":
+			{
+				"buffer_size": 3169,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n#include <iostream>\n#include <istream>\n#include <sstream>\n#include    <iomanip>\n#include <string>\n#include <opencv2/highgui/highgui.hpp>\n#include <opencv2/opencv.hpp>\n#include <cmath>\n#include \"skel.hpp\"\n#include \"../asign0508/ppoint.hpp\"\n#include \"../asign0423/drawLine.hpp\"\n#include \"transform_3d.hpp\"\n#include \"cg.hpp\"\n#define EPS 0.01\nusing namespace tutor;\nusing namespace cv;\nusing namespace std;\n\n\nint main() {\n  //cv::Mat img(500, 500, CV_8UC1, 1);\n\n  SKEL skel = SKEL(\"cg.skel\");\n  //Matx44d R = Translation(1, 0, 1);\n  //Matx44d R = RotationX(1);\n  //Matx44d R = RotationY(1);\n  //Matx44d R = RotationZ(0.5);\n\n  //cout << R(1,1) << endl;\n  //skel.transform(R);\n  //cout << R(1,1) << endl;\n  //skel.transform(Translation(0, 0, 0));\n  //skel.transform(M);\n  //cout << Translation(1, 0, 0) << endl;\n  //cout << M(0,3) << endl;\n\n  for (int i=0; i<100; i++) {\n    cv::Mat img(500, 500, CV_8UC1, 1);\n    Matx44d R = RotationZ(2*3.14/100);\n    skel.transform(R);\n    R = RotationX(2*3.14/100);\n    skel.transform(R);\n    draw_skel_perspective(img, skel);\n    stringstream file_name;\n    file_name << \"img/cg_\" << std::setw( 3 ) << std::setfill( '0' ) <<i  << \".png\";\n    cv::imwrite(file_name.str(), img);\n  }\n}\n",
+			"file": "asign0522/cg.cpp",
+			"file_size": 1215,
+			"file_write_time": 1432893003000000,
+			"settings":
+			{
+				"buffer_size": 1216,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "\n__author__ = 'kyota'\n\nimport numpy as np\n\nclass FileReader:\n  def read_file(self, file_name):\n    f = open(file_name, \"r\")\n    f.close\n    lines = f.readlines()\n    arr = np.ndarray((256))\n    labels = []\n    for line in lines:\n      #arr = np.concatenate( (arr, [[float(x) for x in line.split(\" \")]]), axis=0)\n      _arr = line.split(\" \") #[float(x) for x in line.split(\" \")]\n      print _arr\n      #_arr = [float(x) for x in _arr]\n      for i in range(0, len(_arr)):\n        print _arr[i]\n        _arr[i] = float(_arr[i])\n      label = _arr[0]\n      _arr.remove(_arr[0])\n      print label\n      print len(_arr)\n      print arr.shape\n      labels.append(round(float(label)) )\n      arr = np.concatenate( (arr, [_arr]), axis=0)\n      #arr = np.append(arr, [float(x) for x in line.split(\",\")])\n      print arr.shape\n      #print arr\n    return [arr, labels]\n\n  def read_files(self, file_names, dir):\n    for file_name in file_names:\n       self.read_file(dir + file_name)\n\nif __name__ == \"__main__\":\n  fileReader = FileReader()\n  fileReader.read_file(\"sample.txt\")\n\n\n\n",
+			"file": "/Users/kyota/GitHub/laboratory/read_file.py",
+			"file_size": 1067,
+			"file_write_time": 1432950738000000,
+			"settings":
+			{
+				"buffer_size": 1068,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/kyota/GitHub/laboratory/read_file.py",
+		"/Users/kyota/practice/asign0529/camera.cpp",
+		"/Users/kyota/practice/asign0529/camera.hpp"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"}\n",
+			"\n																	",
+			"																	\n"
+		],
+		"highlight": true,
+		"in_selection": true,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/Users/kyota/GitHub/laboratory/read_file.hpp",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/kyota/GitHub/laboratory/read_file.cpp",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "#include \"read_file.hpp\"",
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "asign0522/skel.hpp",
+					"settings":
+					{
+						"buffer_size": 2032,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								341,
+								341
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "asign0522/cg.hpp",
+					"settings":
+					{
+						"buffer_size": 3169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								389,
+								389
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "asign0522/cg.cpp",
+					"settings":
+					{
+						"buffer_size": 1216,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1,
+								1
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 127.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/kyota/GitHub/laboratory/read_file.py",
+					"settings":
+					{
+						"buffer_size": 1068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/kyota/practice/practice.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 50.0,
+	"status_bar_visible": true
+}

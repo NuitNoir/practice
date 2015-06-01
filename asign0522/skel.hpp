@@ -12,9 +12,9 @@ typedef std::vector<double> Polyline;
 
 class SKEL{
 	private:
-		std::vector<PPoint3d> _vertices;
-		std::vector<Polyline> _lines;
-		cv::Matx44d _matrix;							// convert matrix
+		std::vector<PPoint3d> _vertices;	
+		std::vector<Polyline> _lines;		
+		cv::Matx44d _matrix;				// convert matrix
 		SKEL();
 
 	public:
@@ -26,19 +26,17 @@ class SKEL{
 
 			ifstream skel_file (fn.c_str());
 			//ifstream skel_file ("cg.skel");
-			//cout << skel_file << endl;
+			//cout << skel_file << endl ;
 			skipComments(skel_file) >> type ;
-			//skel_file.open(fn.c_str);
 			skipComments(skel_file) >> v_num ;
-			//cout << v_num;
 			skipComments(skel_file) >> p_num ;
 			// read vertices
 			double x, y, z, w;
 			for (int i=0; i<v_num; i++) {
 				skipComments(skel_file) >> x >> y >> z >> w ;
 				//cout << x << endl;
-				PPoint3d p(x,y,z,w);
-				_vertices.push_back(p);
+				PPoint3d p(x,y,z,w);	
+				_vertices.push_back(p);	
 			}
 			// read polyline
 			for (int i=0; i<p_num; i++) {
