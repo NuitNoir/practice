@@ -24,8 +24,8 @@ void draw_line_bres(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char 
 		if (diff_x >= 0) {
 			for (int i=0; i<diff_x; i++) {
 
-				std::cout << slope << std::endl;
-				std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
+				// std::cout << slope << std::endl;
+				// std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
 
 				if (x > width || y > height) continue;
 				dst.at<unsigned char>(static_cast<int>(y + 0.5), x) = l;
@@ -133,8 +133,8 @@ void draw_line(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char l) {
 
 			for (int i=0; i<diff_x; i++) {
 
-				std::cout << slope << std::endl;
-				std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
+				// std::cout << slope << std::endl;
+				// std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
 
 				if (x > width || y > height || x<0 || y<0) continue;
 				dst.at<unsigned char>(static_cast<int>(y + 0.5), x) = l;
@@ -144,8 +144,8 @@ void draw_line(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char l) {
 		} else {
 			// slope < 1 to left
 			for (int i=0; i>diff_x; i--) {
-				std::cout << slope << std::endl;
-				std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
+				// std::cout << slope << std::endl;
+				// std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
 
 				if (x > width || y > height || x<0 || y<0) continue;
 
@@ -162,8 +162,8 @@ void draw_line(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char l) {
 		// slope > 1 to right
 		if (diff_y >= 0) {
 			for (int i=0; i<diff_y; i++) {
-				std::cout << slope << std::endl;
-				std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
+				// std::cout << slope << std::endl;
+				// std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
 				if (x > width || y > height || x<0 || y<0) continue;
 
 				dst.at<unsigned char>(static_cast<int>(y + 0.5), x) = l;
@@ -173,8 +173,8 @@ void draw_line(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char l) {
 		} else {
 			//slope > 1 to left
 			for (int i=0; i>diff_y; i--) {
-				std::cout << slope << std::endl;
-				std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
+				// std::cout << slope << std::endl;
+				// std::cout << x << ' ' << (int)y << ' ' << l <<  std::endl;
 				if (x > width || y > height || x<0 || y<0) continue;
 
 				dst.at<unsigned char>(static_cast<int>(y + 0.5), x) = l;
@@ -185,7 +185,6 @@ void draw_line(cv::Mat &dst, int x1, int y1, int x2, int y2, unsigned char l) {
 		}
 	}
 }
-
 
 void draw_circle(cv::Mat& dst, int x0, int y0, unsigned r, unsigned char l) {
 	int x, y;

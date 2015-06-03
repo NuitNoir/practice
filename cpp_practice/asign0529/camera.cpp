@@ -17,10 +17,10 @@ int main() {
 	SKEL skel3 = SKEL("T.skel");
 	SKEL skel5 = SKEL("L1.skel");
 	SKEL skel6 = SKEL("L2.skel");
-	SKEL skel7= SKEL("L3.skel");
+	SKEL skel7 = SKEL("L3.skel");
 	SKEL skel8 = SKEL("T2.skel");
 	vector<SKEL> skels;
-     skels.push_back(skel);
+  // skels.push_back(skel);
 	skels.push_back(skel2);
 	skels.push_back(skel3);
 	skels.push_back(skel5);
@@ -33,19 +33,20 @@ int main() {
 	c1.set_size(500, 500);
 	c2.set_size(500, 500);
 	c1.set_intrinsic(0.5, 3., 2., 0., 1., 1.); // f, ku, kv, s, u0, v0
-	c2.set_intrinsic(2. , 1., 1., 0., 1., 1.);
+	// c2.set_intrinsic(2. , 1., 1., 0., 1., 1.);
 
 	// make location
-	Matx44d R = Translation(-1, -1, -10);
-	Matx44d R2 = Translation(1, -10, -1);
-	R2 = R2*RotationY(3.14/2);
+	Matx44d R = Translation(-3, -3, 10);
+	// Matx44d R2 = Translation(1, -10, -1);
+	Matx44d R3 = RotationY(-0.1);
+	// R = R3*RotationY(3.14/2);
+	R = R3*R;
 	c1.set_location(R);
 	// c2.set_location(R2);
 
-	Matx44d T  = Translation(0, 0, 0.1); 
+	Matx44d T  = Translation(0, 0, -0.2);
 	// Matx44d T2  = RotationX(0.01);
 	//R = R*T ;
-
 	for (unsigned i=0; i<100; i++) {
 		cv::Mat img(500, 500, CV_8UC1, 1);
 		c1.transform(T);
@@ -60,4 +61,3 @@ int main() {
 	  cv::imwrite(file_name.str(), img);
 	}
 }
-
