@@ -1,5 +1,4 @@
-# -*- coding:utf-8 -*- 
-
+# -*- coding:utf-8 -*-
 import mysql.connector
 import sklearn
 
@@ -20,9 +19,8 @@ def main():
         port=3306,
         db="jeek_development",
         user='kyota',
-        passwd=ENV['kyota_pswd')
+    #    passwd=ENV['kyota_pswd')
     #      charset="UTF8")
-
     cur = cnn.cursor()
 
     cur.execute("""select distinct user_id, user_detail from user_details limit 100 """)
@@ -52,7 +50,7 @@ def main():
     dense = list(matutils.corpus2dense([tmp], num_terms=len(dictionary)).T[0])
     vectors.append(dense)
 
-   # LSI
+  # LSI
   lsi_docs = {}
   num_group = 2
   lsi_model = gensim.models.LsiModel(bow_docs.values(), id2word=dct.load_from_text('jeek_es.txt'),
@@ -73,5 +71,4 @@ def main():
 # # Execute
 if __name__ == "__main__":
   main()
-
 

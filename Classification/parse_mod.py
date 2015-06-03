@@ -78,6 +78,3 @@ class parser2:
         }
     return parsed_words_dict
 
-
-
-
