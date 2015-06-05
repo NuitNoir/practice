@@ -103,22 +103,21 @@ private:
 	    				// p2z = projected_v[lines[i][j+1]][2];
 					p2z = vertices[lines[i][j+1]][2];
 
-					double p3x, p3y, p3z;
-					p3x = projected_v[lines[i][j+2]].x()*f + bias;
-					p3y = projected_v[lines[i][j+2]].y()*f + bias;
-			    		// p2z = projected_v[lines[i][j+1]][2];
-					p3z = vertices[lines[i][j+2]][2];
+					// double p3x, p3y, p3z;
+					// p3x = projected_v[lines[i][j+2]].x()*f + bias;
+					// p3y = projected_v[lines[i][j+2]].y()*f + bias;
+			  //   		// p2z = projected_v[lines[i][j+1]][2];
+					// p3z = vertices[lines[i][j+2]][2];
 
 					Point2f p1(p1x, p1y);
 					Point2f p2(p2x, p2y);
-					Point2f p3(p3x, p3y);
+					// Point2f p3(p3x, p3y);
 				        // cout << "p1="<<p1 << " p2="<< p2 << endl;
-					double z = _location(2,3);
+					// double z = _location(2,3);
 
 				      ///////// hide line
 					if (lines[i][0] >= 3) {
 						hide_flag = hide_line(projected_v[lines[i][1]], projected_v[lines[i][2]], projected_v[lines[i][3]] );
-						// hide_flag = hide_line(projected_v[lines[i][1]], projected_v[lines[i][2]], projected_v[lines[i][3]] );
 						// hide_flag = hide_line(p1, p2, p3);
 			     		 	//cout << hide_flag << endl;
 						if (hide_flag == 1) {
@@ -150,20 +149,17 @@ private:
  * ****************************************
  */
  int hide_line(PPoint2d p0, PPoint2d p1, PPoint2d p2) {
- // int hide_line(Point2f p0, Point2f p1, Point2f p2) {
 		  // Point2f vec1(p1[0]-p0[0], p1[1]-p0[1]);
 		  // Point2f vec2(p2[0]-p0[0], p2[1]-p0[1]);
 
- 		// Point2f vec1(p1.x - p0.x,  p1.y - p0.y);
- 		// Point2f vec2(p2.x - p0.x,  p2.y - p0.y);
-		  Point2f vec1(p1[0] - p0[0], p1[1] - p0[1]); // [0 , 1, 0]
+ 		  Point2f vec1(p1[0] - p0[0], p1[1] - p0[1]); // [0 , 1, 0]
 		  Point2f vec2(p2[0] - p0[0], p2[1] - p0[1]);  // [0 , -2, 0]
 		  // Point2f vec2(p2[0]-p0[0], p2[1]-p0[1]);
 
 		  //////  cross product.  vec1 * vec2
 		  double cross_product_z = vec1.x* vec2.y - vec1.y*vec2.x;
-		  cout << "p0 : " << p0  <<  "  p1 : " << p1 << "  p2 : " << p2 << endl;
-		  cout << "cross_product : "<< cross_product_z << "  vec1 :  " << vec1 << " vec2 : " << vec2 <<  endl;
+		  // cout << "p0 : " << p0  <<  "  p1 : " << p1 << "  p2 : " << p2 << endl;
+		  // cout << "cross_product : "<< cross_product_z << "  vec1 :  " << vec1 << " vec2 : " << vec2 <<  endl;
 
 		  // double inner_product = vec1.ddot(vec2);
 		  // double inner_product = vec1.x*vec2.x + vec1.y*vec2.y;
@@ -181,5 +177,23 @@ private:
 		  	return 0;
 		  }
 		}
+
+	 int hide_line(Point2f p0, Point2f p1, Point2f p2) {
+		Point2f vec1(p1.x - p0.x,  p1.y - p0.y);
+ 		Point2f vec2(p2.x - p0.x,  p2.y - p0.y);
+
+		  double cross_product_z = vec1.x* vec2.y - vec1.y*vec2.x;
+		  // cout << "p0 : " << p0  <<  "  p1 : " << p1 << "  p2 : " << p2 << endl;
+		  // cout << "cross_product : "<< cross_product_z << "  vec1 :  " << vec1 << " vec2 : " << vec2 <<  endl;
+		  cout << cross_product_z << endl;
+		  if (cross_product_z < 0) {
+		  	return 1;
+		  } else {
+		  	return 0;
+		  }
+	}		
+
+	
+
 	};
 

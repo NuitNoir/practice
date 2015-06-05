@@ -23,7 +23,7 @@ int main() {
 	SKEL skel9 = SKEL("cube.skel");
 ;	vector<SKEL> skels;
 	// skels.push_back(skel);
-	// skels.push_back(skel2);
+	skels.push_back(skel2);
 	// skels.push_back(skel3);
 	// skels.push_back(skel5);
 	// skels.push_back(skel6);
@@ -42,7 +42,7 @@ int main() {
 	double dz = 0.1;
 
 	// make location
-	Matx44d R = Translation(-3, -3, z0);
+	Matx44d R = Translation(0, 0, z0);
 	// Matx44d R2 = Translation(1, -10, -1);
 	Matx44d R3 = RotationY(0.1);
 	// R = R3*RotationY(3.14/2);
