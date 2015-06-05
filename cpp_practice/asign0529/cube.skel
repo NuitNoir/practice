@@ -1,0 +1,32 @@
+4SKEL
+# Vertices_num, Polyline_num
+8 12
+##### Vertices
+1 1 0 1
+2 1 0 1
+2 2 0 1
+1 2 0 1
+# backside
+1 1 1 1
+2 1 1 1
+2 2 1 1
+1 2 1 1
+#### Polyline
+3 0 1 2
+3 2 3 0
+# backside
+3 6 5 4
+3 4 7 6
+#### side
+# upside
+3 3 2 6
+3 6 7 3
+# right side
+3 0 3 7
+3 7 4 0
+# left side
+3 5 6 2
+3 2 1 5
+# down side
+3 5 1 0
+3 0 4 5
