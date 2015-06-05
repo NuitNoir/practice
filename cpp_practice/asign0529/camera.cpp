@@ -22,11 +22,11 @@ int main() {
 	vector<SKEL> skels;
   // skels.push_back(skel);
 	skels.push_back(skel2);
-	// skels.push_back(skel3);
-	// skels.push_back(skel5);
-	// skels.push_back(skel6);
-	// skels.push_back(skel7);
-	// skels.push_back(skel8);
+	skels.push_back(skel3);
+	skels.push_back(skel5);
+	skels.push_back(skel6);
+	skels.push_back(skel7);
+	skels.push_back(skel8);
 
 	/////////// make camera
 	Camera c1;
