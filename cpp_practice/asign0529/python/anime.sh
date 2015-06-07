@@ -1,0 +1,1 @@
+convert -delay 10 -loop 0 img/camera*.png camera.gif
