@@ -33,6 +33,5 @@ def main():
     print img
 
 
-
 if __name__ == "__main__":
   main()

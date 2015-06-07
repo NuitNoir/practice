@@ -6,6 +6,7 @@
 #include <string>
 #include "../asign0508/ppoint.hpp"
 #include <opencv2/opencv.hpp>
+#include <cmath>
 #include "../asign0522/8_geometry4/skip_comments.hpp"
 
 #include "camera.hpp"
@@ -19,14 +20,16 @@ int main() {
 	SKEL skel6 = SKEL("L2.skel");
 	SKEL skel7 = SKEL("L3.skel");
 	SKEL skel8 = SKEL("T2.skel");
-	vector<SKEL> skels;
-  // skels.push_back(skel);
+	SKEL skel9 = SKEL("cube.skel");
+;	vector<SKEL> skels;
+	// skels.push_back(skel);
 	skels.push_back(skel2);
-	skels.push_back(skel3);
-	skels.push_back(skel5);
-	skels.push_back(skel6);
-	skels.push_back(skel7);
-	skels.push_back(skel8);
+	// skels.push_back(skel3);
+	// skels.push_back(skel5);
+	// skels.push_back(skel6);
+	// skels.push_back(skel7);
+	// skels.push_back(skel8);
+	skels.push_back(skel9);
 
 	/////////// make camera
 	Camera c1;
@@ -39,7 +42,7 @@ int main() {
 	double dz = 0.1;
 
 	// make location
-	Matx44d R = Translation(-1, -1, z0);
+	Matx44d R = Translation(0, 0, z0);
 	// Matx44d R2 = Translation(1, -10, -1);
 	Matx44d R3 = RotationY(0.1);
 	// R = R3*RotationY(3.14/2);
@@ -48,9 +51,10 @@ int main() {
 	// c2.set_location(R2);
 
 	Matx44d T  = Translation(0, 0, dz);
-	// Matx44d T2  = RotationX(0.01);
-	//R = R*T ;
+	 // Matx44d T = RotationX(0.1);
+
 	for (unsigned i=0; i<100; i++) {
+			 // Matx44d T  = Translation(cos(i), sin(i), dz);
 		cv::Mat img(500, 500, CV_8UC1, 1);
 		c1.transform(T);
 		// c2.transform(T2);

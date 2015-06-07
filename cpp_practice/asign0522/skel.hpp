@@ -13,7 +13,7 @@ typedef std::vector<double> Polyline;
 class SKEL{
 	private:
 		std::vector<PPoint3d> _vertices;	
-		std::vector<Polyline> _lines;		
+		std::vector<Polyline> _lines;
 		cv::Matx44d _matrix;				// convert matrix
 		SKEL();
 
@@ -35,8 +35,8 @@ class SKEL{
 			for (int i=0; i<v_num; i++) {
 				skipComments(skel_file) >> x >> y >> z >> w ;
 				//cout << x << endl;
-				PPoint3d p(x,y,z,w);	
-				_vertices.push_back(p);	
+				PPoint3d p(x,y,z,w);
+				_vertices.push_back(p);
 			}
 			// read polyline
 			for (int i=0; i<p_num; i++) {
@@ -49,7 +49,6 @@ class SKEL{
 				_lines.push_back(p);
 			}
 		}
-
 		void print_vertices() {
 			for (int i=0; i<(int)_vertices.size(); i++) {
 				cout << _vertices[i][0] << ' '
@@ -66,8 +65,6 @@ class SKEL{
 						<< _lines[i][3] << ' '<< endl;
 			}
 		}
-
-
 
 		const std::vector<PPoint3d>& vertices() const{
 			return _vertices;
@@ -87,4 +84,3 @@ class SKEL{
 			}
 		}
 };
-
