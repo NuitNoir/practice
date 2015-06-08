@@ -5,7 +5,7 @@ import math
 
 class SKEL:
   def __init__(self, file_name):
-    print 'construct skel'
+    # print 'construct skel'
     self.vertices = np.ndarray((0,4))
     self.lines = np.ndarray((0,4))
     self.matrix = np.ndarray((4,4))
@@ -22,7 +22,7 @@ class SKEL:
       line = line.replace("\n", "")
       _arr = line.split(" ")
       if _arr.__contains__("#"):
-        print 'skip'
+        # print 'skip'
         continue
       row += 1
       if row == 1:

@@ -6,7 +6,7 @@ import cv2
 
 class SKEL:
   def __init__(self, file_name):
-    print 'construct skel'
+    # print 'construct skel'
     self.vertices = np.ndarray((0,4))
     self.lines = np.ndarray((0,4))
     self.matrix = np.ndarray((4,4))
@@ -25,7 +25,7 @@ class SKEL:
       if _arr.__contains__(''):
         _arr.remove('')
       if _arr[0].__contains__("#"):
-        print 'skip'
+        # print 'skip'
         continue
       row += 1
       if row == 1:

@@ -51,10 +51,10 @@ def draw_line(img, p, l):
       img[y, math.floor(x)] = l
   return img
 
-def mark(img, p, l)
+def mark(img, p, l):
   int r = 10;
   height, width = img.shape
-  p1 = np.
+  # p1 = np.
   if (x>=0 and y>=0 and x<=width and y<=height):
     cv.Line(img, p1, p2, l, thickness=5)
 
