@@ -8,6 +8,7 @@ class SKEL:
   def __init__(self, file_name):
     # print 'construct skel'
     self.vertices = np.ndarray((0,4))
+    self.projected_vertices = np.ndarray((0,3))
     self.lines = np.ndarray((0,4))
     self.matrix = np.ndarray((4,4))
 
