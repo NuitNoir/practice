@@ -4,6 +4,7 @@
 #include <cmath>
 #include "ppoint.hpp"
 #include "transform.hpp"
+#include "affin.hpp;"
 
 using namespace tutor;
 using namespace cv;
