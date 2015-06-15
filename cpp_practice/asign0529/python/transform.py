@@ -4,27 +4,32 @@ import math as m
 
 class Transformer3d:
   def Translate(self, tx, ty, tz):
-    return np.array([[1, 0, 0, tx],
-             [0, 1, 0, ty],
-             [0, 0, 1, tz],
-             [0, 0, 0, 1]])
+    T = np.array([[1, 0, 0, tx],
+                  [0, 1, 0, ty],
+                  [0, 0, 1, tz],
+                  [0, 0, 0, 1]])
+    return T
 
   def RotationX(self, angle):
-    return np.array([[1, 0, 0, 0],
-                    [0, m.cos(angle), m.sin(angle), 0],
-                    [0, m.sin(angle), m.cos(angle), 0],
-                    [0, 0, 0, 1]])
+    R = np.array([[1, 0, 0, 0],
+                  [0, m.cos(angle), m.sin(angle), 0],
+                  [0, m.sin(angle), m.cos(angle), 0],
+                  [0, 0, 0, 1]])
+    return R
 
-  def RotarionY(self, angle):
-    return np.array([m.cos(angle), 0, m.sin(angle), 0],
+  def RotationY(self, angle):
+    R =  np.array([[m.cos(angle), 0, m.sin(angle), 0],
                     [0, 1, 0, 0],
                     [-m.sin(angle), 0, m.cos(angle), 0],
-                    [0, 0, 0, 1])
+                    [0, 0, 0, 1]])
+    return R
+
   def RotationZ(self, angle):
-    return np.array([m.cos(angle), -m.sin(angle), 0, 0],
+    R = np.array([[m.cos(angle), -m.sin(angle), 0, 0],
                     [m.sin(angle), m.cos(angle), 0, 0],
                     [0, 0, 1, 0],
-                    [0, 0, 0, 1])
+                    [0, 0, 0, 1]])
+    return R
 
 if __name__ == "__main__":
   transformer = Transformer3d()
