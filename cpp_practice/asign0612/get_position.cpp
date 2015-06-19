@@ -76,7 +76,7 @@ void GetPosition(int event, int x, int y, int flags, void*) {
 		event_description += " + ALT";
 
 	if (event_description == "LBUTTON_DOWN") {
-		std::cout << "x = " << x << ",  y = " << y <<  std::endl;
+		std::cout <<  x <<  " " << y <<  std::endl;
 	}
 }
 

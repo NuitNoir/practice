@@ -34,7 +34,7 @@ int main() {
 	}
 	std::cout << x_1 << endl;
 	std::ifstream file3( "pts2.txt");
-	// std::ifstream file3( "chess2.txt");
+	std::ifstream file3( "chess2.txt");
 	for (int i=0; i<N; i++) {
 		file3 >> x >> y;
 		cv::Point3d  x2i(x, y, 1); 

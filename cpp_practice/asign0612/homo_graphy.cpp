@@ -6,15 +6,16 @@
 #include <string>
 #include <opencv2/highgui/highgui.hpp>
 #include "camera.hpp"
-#include "affin.hpp"
-#define N  4
+#include "../lib/affin.hpp"
+#include "transform_3d.hpp"
+#define N  5
 
 int main() {
 	std::vector<cv::Point3d>x_1;
 	std::vector<cv::Point3d>x_2 ;
 	double x, y;
 
-	std::ifstream file2("room1.txt");
+	std::ifstream file2("room2.txt");
 	// std::ifstream file2("chess1.txt");
 	for (int i=0; i<N; i++) {
 		file2 >> x >> y;
@@ -22,7 +23,7 @@ int main() {
 		x_1.push_back(x1i);
 	}
 	std::cout << x_1 << endl;
-	std::ifstream file3( "room2.txt");
+	std::ifstream file3( "room1.txt");
 	// std::ifstream file3( "chess2.txt");
 	for (int i=0; i<N; i++) {
 		file3 >> x >> y;
@@ -62,10 +63,14 @@ int main() {
 	cv::Mat H = (cv::Mat_<double> (3, 3)  <<  vt.at<double>(7,0) , vt.at<double>(7,1) , vt.at<double>(7,2) , vt.at<double>(7,3) , vt.at<double>(7,4) , 
 		vt.at<double>(7,5) , vt.at<double>(7,6) , vt.at<double>(7,7) , vt.at<double>(7,8)  );
 	 std::cout << "affin matrix" <<  std::endl << H << std::endl;
-	 // //////////////////////// image transform
+	 //////////////////////// image transform
 	 cv::Mat img = cv::imread("img1.pgm", 1);
 	 AffinTransformer affin;
-	 cv::Mat out_img = affin.TransformE(img, H, 0);
+	 // cv::Matx33d mat = affin.Translation(0,0);
+	 // std::cout << "mat\t=" << mat << std::endl;
+	 // cv::Mat out_img = affin.TransformE(img, H, 1);
+	 // cv::Mat out_img = affin.TransformE(img, mat, 0);
+	 cv::Mat out_img = affin.TransformL(img, mat);
 	 // cv::Mat out_img = affin.TransformL(img, H);
 	 cv::imwrite("out.jpg", out_img);
 

@@ -13,6 +13,7 @@ using namespace cv;
 using namespace std;
 
 class Transformer_3d {
+public:
 	cv::Matx44d Translation(double tx, double ty, double tz) {
 		Matx44d T (1, 0, 0, tx,
 			0, 1, 0, ty,
