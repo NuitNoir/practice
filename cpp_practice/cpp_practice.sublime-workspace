@@ -3,80 +3,69 @@
 	{
 		"selected_items":
 		[
+			[
+				"w",
+				"w"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"pro",
+				"cross_product_z"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "asign0529/camera.cpp",
+			"file": "asign0612/homo_graphy.cpp",
 			"settings":
 			{
-				"buffer_size": 1634,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "asign0529/square.skel",
-			"settings":
-			{
-				"buffer_size": 132,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "asign0529/square_.skel",
-			"settings":
-			{
-				"buffer_size": 140,
+				"buffer_size": 2642,
 				"line_ending": "Unix",
-				"name": "4SKEL"
+				"name": "homo_graphy.cpp"
 			}
 		},
 		{
-			"file": "asign0529/world.skel",
+			"file": "asign0619/calib_zhang.cpp",
 			"settings":
 			{
-				"buffer_size": 136,
+				"buffer_size": 4022,
+				"line_ending": "Unix",
+				"name": "calib_zhang.cpp"
+			}
+		},
+		{
+			"file": "asign0619/world.txt",
+			"settings":
+			{
+				"buffer_size": 32,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "asign0529/camera.hpp",
+			"file": "lib/camera.hpp",
 			"settings":
 			{
-				"buffer_size": 3671,
+				"buffer_size": 6636,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "asign0522/cg.hpp",
+			"file": "lib/affin.hpp",
 			"settings":
 			{
-				"buffer_size": 3169,
+				"buffer_size": 5209,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "asign0522/skel.hpp",
+			"file": "lib/transform_3d.hpp",
 			"settings":
 			{
-				"buffer_size": 2032,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "asign0529/T.skel",
-			"settings":
-			{
-				"buffer_size": 398,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "asign0529/T2.skel",
-			"settings":
-			{
-				"buffer_size": 398,
+				"buffer_size": 930,
 				"line_ending": "Unix"
 			}
 		}
@@ -130,19 +119,61 @@
 	"expanded_folders":
 	[
 		"/home/kyota/practice/cpp_practice",
-		"/home/kyota/practice/cpp_practice/asign0522",
-		"/home/kyota/practice/cpp_practice/asign0529"
+		"/home/kyota/practice/cpp_practice/asign0612",
+		"/home/kyota/practice/cpp_practice/asign0619",
+		"/home/kyota/practice/cpp_practice/lib"
 	],
 	"file_history":
 	[
+		"/home/kyota/practice/cpp_practice/asign0612/projection_matrix.cpp",
+		"/home/kyota/practice/cpp_practice/asign0612/transform_3d.hpp",
+		"/home/kyota/practice/cpp_practice/asign0612/camera.hpp",
+		"/home/kyota/practice/cpp_practice/asign0612/affin.hpp",
+		"/home/kyota/practice/cpp_practice/asign0522/skel.hpp",
+		"/home/kyota/practice/cpp_practice/asign0612/get_position.cpp",
+		"/home/kyota/practice/cpp_practice/asign0612/homo_graphy.sh",
+		"/home/kyota/practice/cpp_practice/asign0612/projection_matrix.sh",
+		"/home/kyota/practice/cpp_practice/asign0522/cg.cpp",
+		"/home/kyota/practice/cpp_practice/asign0501/affin.cpp",
+		"/home/kyota/practice/cpp_practice/asign0529/camera.cpp",
+		"/home/kyota/practice/cpp_practice/asign0612/room1.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/room2.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/chess2.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/chess1.txt",
+		"/home/kyota/practice/cpp_practice/asign0501/transform.hpp",
+		"/home/kyota/practice/cpp_practice/asign0612/a.out",
+		"/home/kyota/practice/cpp_practice/asign0522/transform_3d.hpp",
+		"/home/kyota/practice/cpp_practice/asign0612/calib.sh",
+		"/home/kyota/practice/cpp_practice/asign0612/focal.cpp",
+		"/home/kyota/practice/cpp_practice/asign0612/pts1.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/pts2.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/caliblate.cpp",
+		"/home/kyota/practice/cpp_practice/asign0529/camera.sh",
+		"/home/kyota/practice/cpp_practice/asign0612/main.cpp",
+		"/home/kyota/practice/cpp_practice/asign0612/world_position2.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/world_position1.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/world_position.txt",
+		"/home/kyota/practice/cpp_practice/asign0612/pts.txt",
+		"/home/kyota/practice/cpp_practice/asign0529/Makefile",
+		"/home/kyota/practice/cpp_practice/asign0417/cv_practice.cpp",
+		"/home/kyota/practice/cpp_practice/asign0410/PGM.hpp",
+		"/home/kyota/practice/cpp_practice/asign0410/PGM.cpp",
+		"/home/kyota/practice/cpp_practice/asign0612/focus.cpp",
+		"/home/kyota/practice/cpp_practice/asign0529/world.skel",
+		"/home/kyota/practice/cpp_practice/asign0529/cube.skel",
+		"/home/kyota/practice/cpp_practice/asign0522/cg.hpp",
+		"/home/kyota/practice/cpp_practice/asign0529/camera.hpp",
+		"/home/kyota/practice/cpp_practice/asign0529/point.skel",
+		"/home/kyota/practice/cpp_practice/asign0529/T.skel",
+		"/home/kyota/practice/cpp_practice/asign0522/cg.skel",
+		"/home/kyota/practice/cpp_practice/asign0529/square_.skel",
+		"/home/kyota/practice/cpp_practice/asign0529/square.skel",
 		"/home/kyota/practice/cpp_practice/asign0529/T2.skel",
 		"/home/kyota/practice/cpp_practice/asign0529/L1.skel",
 		"/home/kyota/practice/cpp_practice/asign0529/L2.skel",
 		"/home/kyota/practice/cpp_practice/asign0529/L3.skel",
 		"/home/kyota/practice/cpp_practice/asign0529/T_.skel",
-		"/home/kyota/practice/cpp_practice/asign0522/cg.skel",
-		"/home/kyota/.config/sublime-text-3/Packages/User/gcv.sublime-build",
-		"/home/kyota/practice/cpp_practice/asign0529/camera.hpp"
+		"/home/kyota/.config/sublime-text-3/Packages/User/gcv.sublime-build"
 	],
 	"find":
 	{
@@ -160,6 +191,61 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"at",
+			"2",
+			")",
+			"1)",
+			"point4d",
+			"7",
+			">(7",
+			"(",
+			"7",
+			"1",
+			"7,1",
+			"7,",
+			"z2",
+			"y2",
+			"x2",
+			"y2",
+			"2",
+			"y1",
+			"z2,   ",
+			"2,",
+			"y2, ",
+			"2,",
+			" 0",
+			" -",
+			"y2, ",
+			"2,",
+			"Point4d",
+			"8",
+			" ,",
+			") ",
+			"8,",
+			"1",
+			"8,1",
+			"8,",
+			"8,1",
+			"8,",
+			"1",
+			"8,1",
+			"8,",
+			"7",
+			"8, ",
+			"7,",
+			"0,",
+			"( 0,0)",
+			"0,",
+			",0",
+			"0,0",
+			"double",
+			"0",
+			";\n",
+			"endl",
+			"ifstream",
+			"1",
+			"x2",
+			"vertices",
 			"0",
 			"1",
 			"-1",
@@ -187,49 +273,78 @@
 			[
 				{
 					"buffer": 0,
-					"file": "asign0529/camera.cpp",
+					"file": "asign0612/homo_graphy.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1634,
+						"buffer_size": 2642,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1103,
-								1103
+								2485,
+								2485
 							]
 						],
 						"settings":
 						{
+							"auto_name": "homo_graphy.cpp",
+							"syntax": "Packages/C++/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 702.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "asign0619/calib_zhang.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4022,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								431,
+								431
+							]
+						],
+						"settings":
+						{
+							"auto_name": "calib_zhang.cpp",
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 378.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "asign0529/square.skel",
+					"buffer": 2,
+					"file": "asign0619/world.txt",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 132,
+						"buffer_size": 32,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								132,
-								132
+								32,
+								32
 							]
 						],
 						"settings":
@@ -242,193 +357,20 @@
 					},
 					"stack_index": 4,
 					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "asign0529/square_.skel",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 140,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								115,
-								115
-							]
-						],
-						"settings":
-						{
-							"auto_name": "4SKEL",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "asign0529/world.skel",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 136,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								110,
-								110
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
-					"buffer": 4,
-					"file": "asign0529/camera.hpp",
+					"buffer": 3,
+					"file": "lib/camera.hpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3671,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3317,
-								3317
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2
-						},
-						"translation.x": 0.0,
-						"translation.y": 1296.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "asign0522/cg.hpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3169,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								205,
-								205
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": -0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "asign0522/skel.hpp",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2032,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1005,
-								1005
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 486.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "asign0529/T.skel",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 398,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								119,
-								119
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "asign0529/T2.skel",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 398,
+						"buffer_size": 6636,
 						"regions":
 						{
 						},
@@ -441,13 +383,72 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "lib/affin.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5209,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1022,
+								1022
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
 					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/transform_3d.hpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 930,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -481,7 +482,7 @@
 		"cols":
 		[
 			0.0,
-			0.391764701092,
+			0.558375382227,
 			1.0
 		],
 		"rows":
@@ -533,7 +534,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 1,
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -541,7 +542,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 175.0,
+	"side_bar_width": 219.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
