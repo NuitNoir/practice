@@ -38,11 +38,15 @@ int main() {
 	c2.set_size(500, 500);
 	c1.set_intrinsic(1, 1., 1., 0., 1., 1.); // f, ku, kv, s, u0, v0
 	// c2.set_intrinsic(2. , 1., 1., 0., 1., 1.);
+	double x0 = -2;
+	double y0 = -2;
 	double z0 = -10;
+	double dx = 0.1;
+	double dy = 0.1;
 	double dz = 0.1;
 
 	// make location
-	Matx44d R = Translation(0, 0, z0);
+	Matx44d R = Translation(x0, y0, z0);
 	// Matx44d R2 = Translation(1, -10, -1);
 	Matx44d R3 = RotationY(0.1);
 	// R = R3*RotationY(3.14/2);
@@ -50,11 +54,11 @@ int main() {
 	c1.set_location(R);
 	// c2.set_location(R2);
 
-	Matx44d T  = Translation(0, 0, dz);
+	Matx44d T  = Translation(dx, dy, dz);
 	 // Matx44d T = RotationX(0.1);
 
 	for (unsigned i=0; i<100; i++) {
-			 // Matx44d T  = Translation(cos(i), sin(i), dz);
+		Matx44d T  = Translation((1/2.0)*cos(i/10), (1/2.0)*sin(i/10), dz);
 		cv::Mat img(500, 500, CV_8UC1, 1);
 		c1.transform(T);
 		// c2.transform(T2);

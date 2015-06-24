@@ -109,7 +109,7 @@ private:
 					if ((p1x > img.cols || p1x < 0 || p1y > img.rows || p1y < 0) && 
 						(p2x > img.cols || p2x < 0 || p2y > img.rows || p2y < 0)) {
 						continue;
-				}    
+				}   
 			      // if (p2x > img.cols || p2x < 0 || p2y > img.rows || p2y < 0) continue;
 				line(img, p1, p2, gray);
     			// draw_line(img, p1x, p1y, p2x, p2y, gray);
@@ -134,27 +134,27 @@ private:
 		  //////  cross product.  vec1 * vec2
 		  double cross_product_z = vec1.x* vec2.y - vec1.y*vec2.x;
 
-		  if (cross_product_z < 0) {
+		  if (cross_product_z > 0) {
 		  	return 1;
 		  } else {
 		  	return 0;
 		  }
 		}
 
-	 int hide_line(Point2f p0, Point2f p1, Point2f p2) {
-		Point2f vec1(p1.x - p0.x,  p1.y - p0.y);
- 		Point2f vec2(p2.x - p0.x,  p2.y - p0.y);
+	//  int hide_line(Point2f p0, Point2f p1, Point2f p2) {
+	// 	Point2f vec1(p1.x - p0.x,  p1.y - p0.y);
+ // 		Point2f vec2(p2.x - p0.x,  p2.y - p0.y);
 
-		  double cross_product_z = vec1.x* vec2.y - vec1.y*vec2.x;
-		  // cout << "p0 : " << p0  <<  "  p1 : " << p1 << "  p2 : " << p2 << endl;
-		  // cout << "cross_product : "<< cross_product_z << "  vec1 :  " << vec1 << " vec2 : " << vec2 <<  endl;
-		  cout << cross_product_z << endl;
-		  if (cross_product_z < 0) {
-		  	return 1;
-		  } else {
-		  	return 0;
-		  }
-	}		
+	// 	  double cross_product_z = vec1.x* vec2.y - vec1.y*vec2.x;
+	// 	  // cout << "p0 : " << p0  <<  "  p1 : " << p1 << "  p2 : " << p2 << endl;
+	// 	  // cout << "cross_product : "<< cross_product_z << "  vec1 :  " << vec1 << " vec2 : " << vec2 <<  endl;
+	// 	  cout << cross_product_z << endl;
+	// 	  if (cross_product_z < 0) {
+	// 	  	return 1;
+	// 	  } else {
+	// 	  	return 0;
+	// 	  }
+	// }		
 
 	
 
