@@ -1,0 +1,4 @@
+kanto1:com.ruckygames.gunmaapps
+kanto2:まさか～ろう
+kansai1:日本海＋太平洋
+kansai2:そうだ

@@ -1,0 +1,4 @@
+kanto1:ひもかわうどん
+kanto2:飢えた狼
+kansai1:ミネラルウォーター 2l
+kansai2:紅葉
