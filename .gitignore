@@ -5,10 +5,4 @@ RemoteSystemsTempFiles
 .project
 .DS_store
 .*project
-*.png
-*.pgm
-*.ppm
-*.jpg
-*.gif
-
 

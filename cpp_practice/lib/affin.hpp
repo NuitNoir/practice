@@ -31,7 +31,7 @@ class AffinTransformer {
 public:
 	cv::Mat TransformL(cv::Mat &src, const cv::Matx33d &M) {
 		// cv::Mat dst = Mat::zeros(src.rows, src.cols, CV_8U);
-		cv::Mat dst = Mat::zeros(3000, 3000, CV_8U);
+		cv::Mat dst = Mat::zeros(src.rows, src.cols, CV_8U);
 
 		PPoint2d p1(0, 0);
 		PPoint2d p(0, 0);

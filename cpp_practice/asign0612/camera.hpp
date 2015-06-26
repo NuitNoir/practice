@@ -16,7 +16,7 @@ class Camera {
 private:
 	unsigned _width, _height;
 	Matx33d _intrinsic;  // inner parameter
-	Matx44d _location;		//	location and derection
+	Matx44d _location;		//	location and direction
 	double _focal;
 	double _ccd;
 
