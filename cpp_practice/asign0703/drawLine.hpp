@@ -1,7 +1,6 @@
 #include <iostream>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/opencv.hpp>
-#include "ppoint.hpp"
 
 //using namespace std;
 // void draw_line_p(cv::Mat &img, const PPoint2d &p, unsigned char l);
