@@ -75,8 +75,7 @@ void draw_line(cv::Mat &img, const PPoint2d &p, unsigned char l) {
   int height = img.rows;
   int width = img.cols;
   int MAX_VAL = 1000000000;
-  slope = p[0]/p[1]
-
+  slope = p[0]/p[1];
 
   // SLOPE SIZE < abs(1)
   if (abs(slope) <= 1) {

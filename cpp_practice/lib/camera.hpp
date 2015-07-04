@@ -5,8 +5,7 @@
 #include "../asign0522/8_geometry4/skip_comments.hpp"
 #include "../asign0522/skel.hpp"
 // #include "../asign0522/cg.hpp"
-#include "../asign0522/transform_3d.hpp"
-#include "../asign0423/drawLine.hpp"
+// #include "transform_3d.hpp"
 
 using namespace tutor;
 using namespace std;
