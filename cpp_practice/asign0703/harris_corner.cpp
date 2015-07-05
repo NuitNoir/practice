@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <climits>
+#include <ctime>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "../lib/ppoint.hpp"
@@ -7,33 +10,57 @@ void differentiate(cv::Mat_<int> &img) ;
 
 class Harris {
 public:
+	std::string img_dir;
+	std::string sig_str;
+	std::string ext;
 	cv::Mat_<double> harris_operator(cv::Mat_<double> img, double sigma) {
 		// cv::Mat_<double> img = cv::imread("Chessboard.png", 0);
 
-		std::vector<cv::Mat_<double> > imgs;
-		imgs = differentiate(img);
+		// std::string img_dir = "img/";
+		// std::string sig_str = std::to_string(sigma);
+		// std::string ext = ".png";
+		std::vector<cv::Mat_<double> > diff_imgs;
+		diff_imgs = differentiate(img); //// imgs = [fx2, fy2, fxy]
+		cv::imwrite(this->img_dir + "fx2" + this->sig_str + this->ext, diff_imgs[0]);
+		cv::imwrite(this->img_dir + "fy2" + this->sig_str + this->ext, diff_imgs[1]);
+		cv::imwrite(this->img_dir + "fxy" + this->sig_str + this->ext, diff_imgs[2]);
+
 		///// gauss 
-		cv::Mat_<double> fx2 = cv::imread("img/fx2.png", 0);
-		cv::Mat_<double> fy2 = cv::imread("img/fy2.png", 0);
-		cv::Mat_<double> fxy = cv::imread("img/fxy.png", 0);
-		gaussian_filter(fx2, sigma, "gauss_fx2.png");
-		gaussian_filter(fy2, sigma, "gauss_fy2.png");
-		gaussian_filter(fxy, sigma, "gauss_fxy.png");
+		// cv::Mat_<double> fx2 = cv::imread(this->img_dir + "fx2.png", 0);
+		// cv::Mat_<double> fy2 = cv::imread(this->img_dir + "fy2.png", 0);
+		// cv::Mat_<double> fxy = cv::imread(this->img_dir + "fxy.png", 0);
+		// std::string this->sig_str = "";
+		// sprintf(this->sig_str, "%f.1", sigma);
+		cv::Mat_<double> g_fx2 = gaussian_filter(diff_imgs[0], sigma);
+		comment_timestamp("gaussian fx2 end");
+		cv::Mat_<double> g_fy2 = gaussian_filter(diff_imgs[1], sigma);
+		comment_timestamp("gaussian fy2 end");
+		cv::Mat_<double> g_fxy = gaussian_filter(diff_imgs[2], sigma);
+		comment_timestamp("gaussian fxy end");
+		cv::imwrite(this->img_dir + "gauss_fx2" + this->sig_str + this->ext, g_fx2);		
+		cv::imwrite(this->img_dir + "gauss_fy2" + this->sig_str + this->ext, g_fy2);	
+		cv::imwrite(this->img_dir + "gauss_fxy" + this->sig_str + this->ext, g_fxy);	
+		comment_timestamp("gaussian get end");
 
 		///// response
-		cv::Mat_<double> g_fx2 = cv::imread("img/gauss_fx2.png", 0);		
-		cv::Mat_<double> g_fy2 = cv::imread("img/gauss_fy2.png", 0);		
-		cv::Mat_<double> g_fxy = cv::imread("img/gauss_fxy.png", 0);		
+		// cv::Mat_<double> g_fx2 = cv::imread(this->img_dir + "gauss_fx2" + this->sig_str + this->ext, 0);		
+		// cv::Mat_<double> g_fy2 = cv::imread(this->img_dir + "gauss_fy2" + this->sig_str + this->ext, 0);		
+		// cv::Mat_<double> g_fxy = cv::imread(this->img_dir + "gauss_fxy" + this->sig_str + this->ext, 0);		
 		cv::Mat_<double> res = response(g_fx2, g_fy2, g_fxy);
-
+		cv::imwrite(this->img_dir + "response" + this->sig_str + this->ext, res);
+		comment_timestamp("response end");
 		// maximum
-		// cv::Mat_<double> res = cv::imread("img/res.png", 0);
+		// cv::Mat_<double> res = cv::imread(this->img_dir + "res.png", 0);
 		
 		cv::Mat_<unsigned char> corner = maximum(res);
+		cv::imwrite(this->img_dir + "feature_points"+this->sig_str+this->ext, corner);
+		comment_timestamp("faeture points end");
 		// mark src img
-		cv::Mat_<unsigned char> src = cv::imread("img/Chessboard.png", 2);
-		// cv::Mat_<unsigned char> corner = cv::imread("img/maximum.png", 0);
+		cv::Mat_<unsigned char> src = cv::imread(this->img_dir + "Chessboard.png", 2);
 		cv::Mat_<unsigned char> marked_src = mark_corner(src, corner);
+		cv::imwrite(this->img_dir + "marked_feature_points"+this->sig_str+this->ext, marked_src);
+
+
 		return corner;
 	}
 
@@ -65,13 +92,13 @@ public:
 		imgs.push_back(mat_fx2);
 		imgs.push_back(mat_fy2);
 		imgs.push_back(mat_fxy);
-		cv::imwrite("img/fx2.png", mat_fx2);
-		cv::imwrite("img/fy2.png", mat_fy2);
-		cv::imwrite("img/fxy.png", mat_fxy);
+		// cv::imwrite(this->img_dir + "fx2.png", mat_fx2);
+		// cv::imwrite(this->img_dir + "fy2.png", mat_fy2);
+		// cv::imwrite(this->img_dir + "fxy.png", mat_fxy);
 		return imgs;
 	}
 
-	cv::Mat_<double>  gaussian_filter( cv::Mat_<double> &img, int sigma, std::string filename) {
+	cv::Mat_<double>  gaussian_filter( cv::Mat_<double> &img, int sigma) {
 		int cols = img.cols;
 		int rows = img.rows;
 		cv::Mat_<double> mat_gauss(rows, cols);
@@ -94,8 +121,6 @@ public:
 				mat_gauss(y, x) = gauss;
 			}
 		}
-		// std::cout << mat_fx << std::endl;
-		cv::imwrite("img/" + filename, mat_gauss); 
 		return mat_gauss;
 	}
 	double gaussian(int sigma, double x) {
@@ -116,7 +141,7 @@ public:
 				mat_res(y, x) = res;
 			}
 		}
-		cv::imwrite("img/res.png" , mat_res);
+		// cv::imwrite(this->img_dir + "res.png" , mat_res);
 		return mat_res;
 	}
 
@@ -126,13 +151,13 @@ public:
 		for (int y=0; y<rows; y++) {
 			for (int x=0; x<cols; x++) {
 				if (is_maximum(y, x, res) == true) {
-					maximum(y, x) = 255;
+					maximum(y, x) = UCHAR_MAX;
 				} else {
 					maximum(y, x) = 0;
 				}
 			}
 		}
-		cv::imwrite("img/maximum.png", maximum);
+		// cv::imwrite(this->img_dir + "" + filename, maximum);
 		return maximum;
 	}
 
@@ -146,11 +171,51 @@ public:
 				}
 			}
 		}
-		cv::imwrite("img/marked_chessboard.png", src);
+		// cv::imwrite(this->img_dir + "marked_chessboard.png", src);
 		return src;
 	}
+	///// return LoG matrix 
+	///// args: src image, feature points image
+	cv::Mat_<double> get_log_mat(cv::Mat_<unsigned char> src, cv::Mat_<unsigned char> feature, double sigma) {
+		int rows = src.rows, cols = src.cols;
+		cv::Mat_<double> log_mat(rows, cols);
+		for (int y=0; y<rows; y++) {
+			for (int x=0; x<cols; x++) {
+				if (feature[y][x] == UCHAR_MAX) {
+					std::string str_y = std::to_string(y);
+					std::string str_x = std::to_string(x);
+					comment_timestamp("feature["+str_y+"]["+str_x+"]="+std::to_string(feature[y][x]));
+					log_mat[y][x] = get_log_val(src, y, x, sigma);
+					std::cout << "log_mat["+str_y+"]["+str_x+"]=" << log_mat[y][x] << std::endl;
+				}
+			}
+		}
+		return log_mat;
+	}
 			
+	void comment_timestamp(std::string comment) {
+		time_t now = time(0);
+		// char* dt = ctime(&now);
+		tm *ltm = localtime(&now);
+		std::cout << ltm->tm_hour << ':' << ltm->tm_min << ' ' << ltm->tm_sec << "\t" << comment << std::endl;
+	}
+
 private:
+		///// return LoG = sigma^2(Bxx + Byy)
+		double get_log_val(cv::Mat_<unsigned char> src, int y, int x, double sigma) {
+			double fx[3], fy[3];
+			for (int i=-1; i<=1; i++) {
+				// fx[i] = (src[y][x+i-1] - src[y][x+i+1]) / 2;
+				// fy[i] = (src[y+i-1][x] - src[y+i-1][x]) / 2;
+				fx[i] = (get_img_val(y, x+i-1, src) - get_img_val(y, x+i+1, src)) / 2;
+				fy[i] = (get_img_val(y+i-1, x, src) - get_img_val(y+i+1, x, src)) / 2;
+			}
+			double fxx, fyy;
+			fxx = (fx[0] - fx[2]) / 2;
+			fyy = (fy[0] - fy[2]) / 2;
+			double log_val = sigma*sigma*abs(fxx + fyy);
+			return log_val;
+		}
 		void mark(cv::Mat& img, cv::Point2d &p, unsigned char l) {
 		int r = 10;
 		double x = p.x;
@@ -168,7 +233,6 @@ private:
 			cv::line(img, pt3, pt4, l);
 		}
 	}
-
 	bool is_maximum(int y, int x, cv::Mat_<double> img) {
 		double maximum = get_img_val(y, x, img);
 		double tmp = 0;
@@ -193,34 +257,76 @@ private:
 		double val = img(y, x);
 		return val;
 	}
-
 };
+
 
 int main() {
 	Harris harris = Harris();
 
+	harris.img_dir = "img/";
+	harris.ext = ".png";
+	harris.sig_str = "";
 	double sigma = 1;
 	double k = 1.2;
-	double N = 10;
+	double N = 8;
 	cv::Mat_<double> img = cv::imread("Chessboard.png", 0);
+	int rows = img.rows, cols = img.cols;
+	// std::vector<cv::Mat_<double> > log_imgs;
+	// std::vector<std::string> filenames
+	// for (int i=0; i< N; i++) {
+	// 	harris.sig_str = std::to_string(sigma);
+	// 	cv::Mat_<double> scaled(img.rows, img.cols);
+	// 	scaled = harris.gaussian_filter(img, sigma);
+	// 	harris.comment_timestamp("gaussian end");
+	// 	cv::imwrite(harris.img_dir + "gaussian"+harris.sig_str+harris.ext, scaled);
+	// 	// cv::Mat_<double> mat_LoG(img.rows, img.cols);
+	// 	cv::Mat_<unsigned char> corner = harris.harris_operator(scaled, sigma);
+	// 	harris.comment_timestamp("harris operator end");
+	// 	// log_imgs.push_back(corner);
+	// 	cv::Mat_<unsigned char> src = cv::imread(harris.img_dir + "gaussian"+harris.sig_str+harris.ext, 0);
+	// 	cv::Mat_<unsigned char> feature = cv::imread(harris.img_dir + "feature_points"+harris.sig_str+".png", 0);
+	// 	cv::Mat_<double> log_mat = harris.get_log_mat(src, feature, sigma);
+	// 	harris.comment_timestamp("LoG end");
+	// 	cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
+	// 	sigma += k;
+	// 	harris.comment_timestamp(std::to_string(i) + "th turn end");
+	// }
+	
 	std::vector<cv::Mat_<double> > log_imgs;
-	// std::vector<std::string> filenames  
-
-	for (int i=0; i< N; i++) {
-		cv::Mat_<double> scaled(img.rows, img.cols);
-		scaled = harris.gaussian_filter(img, sigma, "gaussian.png");
-		cv::Mat_<double> mat_LoG(img. rows, img.cols);
-		corner = harris.harris_operator(scaled, sigma);
-		log_imgs.push_back(corner);
+	sigma = 1;
+	for (int i=0; i<N; i++) {
+		harris.sig_str = std::to_string(sigma);
+		cv::Mat_<unsigned char> feature = cv::imread(harris.img_dir + "feature_points" +harris.sig_str+ harris.ext, 0);
+		cv::Mat_<unsigned char> src 	= cv::imread(harris.img_dir + "gaussian"+harris.sig_str	+ harris.ext, 0);
+		std::cout << harris.img_dir + "feature_points" +harris.sig_str+ harris.ext << std::endl;
+		std::cout << harris.img_dir + "gaussian"+harris.sig_str + harris.ext << std::endl;
+		std::cout << "feature=" << feature.size() << "\tsrc=" << src.size() << std::endl;
+		cv::Mat_<double> log_mat = harris.get_log_mat(src, feature, sigma);
+		cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
+		log_imgs.push_back(log_mat);
 		sigma += k;
-		std::cout << i << std::endl;
 	}
-
-	double rows = img.rows, cols = img.cols;
-	for (unsigned i=0; i<log_imgs.size(); i++) {
-		// log_imgs[i] 
+	std::vector<std::vector<double> > feature_points; //// (y, x, val);
+	// std::vector<double[3]> feature_points;
+	int threshold = 1500;
+	for (int y=0; y<rows; y++) {
+		for (int x=0; x<rows; x++) {
+			double max = 0;
+			for (int i=0; i<N; i++) {
+				if (double val=log_imgs[i](y, x) == threshold) {
+					max = val;
+				}
+			}
+			if (max != 0) {
+				// double feature_point[3] = {y, x, max};
+				std::vector<double> feature_point; // = {y, x, max};
+				feature_point.push_back((double)y);
+				feature_point.push_back((double)x);
+				feature_point.push_back(max);
+				feature_points.push_back(feature_point);
+			}			
+		}
 	}
-	// harris.harris_operator(scaled);
 	return 0;
 }
 
