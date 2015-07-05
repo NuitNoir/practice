@@ -18,7 +18,7 @@ def main():
     cnn = mysql.connector.connect(host='localhost',
         port=3306,
         db="jeek_development",
-        user='kyota',
+        user='kyota')
     #    passwd=ENV['kyota_pswd')
     #      charset="UTF8")
     cur = cnn.cursor()
