@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <climits>
 #include <ctime>
+#include <iostream>
+#include <string>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "../lib/ppoint.hpp"
@@ -138,6 +140,7 @@ public:
 				detC = g_fx2(y, x)*g_fy2(y, x) - 2*g_fxy(y, x);
 				trC = g_fx2(y, x) + g_fy2(y, x);
 				res = detC - k*trC*trC;
+				// std::cout << "res = " << res << std::endl;
 				mat_res(y, x) = res;
 			}
 		}
@@ -176,23 +179,26 @@ public:
 	}
 	///// return LoG matrix 
 	///// args: src image, feature points image
-	cv::Mat_<double> get_log_mat(cv::Mat_<unsigned char> src, cv::Mat_<unsigned char> feature, double sigma) {
+	cv::Mat_<int> get_log_mat(cv::Mat_<unsigned char> src, cv::Mat_<unsigned char> feature, double sigma) {
 		int rows = src.rows, cols = src.cols;
-		cv::Mat_<double> log_mat(rows, cols);
+		cv::Mat_<int> log_mat(rows, cols);
 		for (int y=0; y<rows; y++) {
 			for (int x=0; x<cols; x++) {
 				if (feature[y][x] == UCHAR_MAX) {
-					std::string str_y = std::to_string(y);
-					std::string str_x = std::to_string(x);
-					comment_timestamp("feature["+str_y+"]["+str_x+"]="+std::to_string(feature[y][x]));
+					// std::string str_y = std::to_string(y);
+					// std::string str_x = std::to_string(x);
+					std::stringstream str_yx;
+					str_yx << '[' << y << "][" << x << "]"<< std::endl;
+					// comment_timestamp("feature"+str_yx.str()+"="+std::to_string(feature[y][x]));
 					log_mat[y][x] = get_log_val(src, y, x, sigma);
-					std::cout << "log_mat["+str_y+"]["+str_x+"]=" << log_mat[y][x] << std::endl;
+					// std::cout << "log_mat" << str_yx << "=" << log_mat[y][x] << std::endl;
 				}
 			}
 		}
+		// std::cout << log_mat << std::endl;
 		return log_mat;
 	}
-			
+
 	void comment_timestamp(std::string comment) {
 		time_t now = time(0);
 		// char* dt = ctime(&now);
@@ -202,7 +208,7 @@ public:
 
 private:
 		///// return LoG = sigma^2(Bxx + Byy)
-		double get_log_val(cv::Mat_<unsigned char> src, int y, int x, double sigma) {
+		int get_log_val(cv::Mat_<unsigned char> src, int y, int x, double sigma) {
 			double fx[3], fy[3];
 			for (int i=-1; i<=1; i++) {
 				// fx[i] = (src[y][x+i-1] - src[y][x+i+1]) / 2;
@@ -213,9 +219,10 @@ private:
 			double fxx, fyy;
 			fxx = (fx[0] - fx[2]) / 2;
 			fyy = (fy[0] - fy[2]) / 2;
-			double log_val = sigma*sigma*abs(fxx + fyy);
+			int log_val = sigma*sigma*abs(fxx + fyy);
 			return log_val;
 		}
+
 		void mark(cv::Mat& img, cv::Point2d &p, unsigned char l) {
 		int r = 10;
 		double x = p.x;
@@ -260,21 +267,30 @@ private:
 };
 
 
+bool is_muximum(int maximum, int val1, int val2) {
+	if (val1 > maximum) return false;
+	if (val2 > maximum) return false;
+	return true;
+}
+
 int main() {
 	Harris harris = Harris();
 
-	harris.img_dir = "img/";
+	harris.img_dir = "img2/";
 	harris.ext = ".png";
 	harris.sig_str = "";
 	double sigma = 1;
 	double k = 1.2;
 	double N = 8;
-	cv::Mat_<double> img = cv::imread("Chessboard.png", 0);
+	cv::Mat_<double> img = cv::imread(harris.img_dir + "Chessboard" + harris.ext, 0);
 	int rows = img.rows, cols = img.cols;
-	// std::vector<cv::Mat_<double> > log_imgs;
-	// std::vector<std::string> filenames
+	std::vector<std::string> filenames;
 	// for (int i=0; i< N; i++) {
-	// 	harris.sig_str = std::to_string(sigma);
+	// 	// harris.sig_str = std::to_string(sigma);
+	// 	std::stringstream ss;
+	// 	ss << sigma;
+	// 	harris.sig_str = ss.str();
+
 	// 	cv::Mat_<double> scaled(img.rows, img.cols);
 	// 	scaled = harris.gaussian_filter(img, sigma);
 	// 	harris.comment_timestamp("gaussian end");
@@ -289,44 +305,56 @@ int main() {
 	// 	harris.comment_timestamp("LoG end");
 	// 	cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
 	// 	sigma += k;
-	// 	harris.comment_timestamp(std::to_string(i) + "th turn end");
+	// 	// harris.comment_timestamp(std::to_string(i) + "th turn end");
 	// }
 	
-	std::vector<cv::Mat_<double> > log_imgs;
+	///// make Log images
+	std::vector<cv::Mat_<int> > log_imgs;
 	sigma = 1;
 	for (int i=0; i<N; i++) {
-		harris.sig_str = std::to_string(sigma);
+		// harris.sig_str = std::to_string(sigma);
+		std::stringstream ss;
+		ss << sigma;
+		harris.sig_str = ss.str();
+
 		cv::Mat_<unsigned char> feature = cv::imread(harris.img_dir + "feature_points" +harris.sig_str+ harris.ext, 0);
 		cv::Mat_<unsigned char> src 	= cv::imread(harris.img_dir + "gaussian"+harris.sig_str	+ harris.ext, 0);
 		std::cout << harris.img_dir + "feature_points" +harris.sig_str+ harris.ext << std::endl;
 		std::cout << harris.img_dir + "gaussian"+harris.sig_str + harris.ext << std::endl;
 		std::cout << "feature=" << feature.size() << "\tsrc=" << src.size() << std::endl;
-		cv::Mat_<double> log_mat = harris.get_log_mat(src, feature, sigma);
+		cv::Mat_<int> log_mat = harris.get_log_mat(src, feature, sigma);
 		cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
 		log_imgs.push_back(log_mat);
 		sigma += k;
 	}
-	std::vector<std::vector<double> > feature_points; //// (y, x, val);
+
+	///// decide LoG maximum
+	// std::vector<cv::Mat_<unsigned char> > harris_laplacian1s; //// (y, x, val);
 	// std::vector<double[3]> feature_points;
-	int threshold = 1500;
-	for (int y=0; y<rows; y++) {
-		for (int x=0; x<rows; x++) {
-			double max = 0;
-			for (int i=0; i<N; i++) {
-				if (double val=log_imgs[i](y, x) == threshold) {
-					max = val;
-				}
+	int threshold = 10;
+	sigma = 1;
+	for (int i=0; i<N; i++) {	
+		cv::Mat_<unsigned char> harris_laplacian1(rows, cols);	
+		std::stringstream ss;
+		ss << sigma;
+		harris.sig_str = ss.str();
+		for (int y=0; y<rows; y++) {
+			for (int x=0; x<rows; x++) {
+				int  max = 0;
+					if (int val=log_imgs[i](y, x) == threshold) {
+						max = val;
+						int val1 = log_imgs[i-1](y, x) ;
+						int val2 = log_imgs[i+1](y, x);
+						if (is_muximum(max, val1, val2)) {
+							harris_laplacian1(y, x) = UCHAR_MAX;
+						}
+					}
 			}
-			if (max != 0) {
-				// double feature_point[3] = {y, x, max};
-				std::vector<double> feature_point; // = {y, x, max};
-				feature_point.push_back((double)y);
-				feature_point.push_back((double)x);
-				feature_point.push_back(max);
-				feature_points.push_back(feature_point);
-			}			
 		}
+		// std::cout  << harris_laplacian1 << std::endl;
+
+		imwrite(harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext, harris_laplacian1);
+		sigma += k;
 	}
 	return 0;
 }
-
