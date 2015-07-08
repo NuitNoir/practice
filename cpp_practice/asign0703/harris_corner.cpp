@@ -62,10 +62,8 @@ public:
 		cv::Mat_<unsigned char> marked_src = mark_corner(src, corner);
 		cv::imwrite(this->img_dir + "marked_feature_points"+this->sig_str+this->ext, marked_src);
 
-
 		return corner;
 	}
-
 
 	// get image differentiation 
 	// fx^2, fxfy, fyfx, fy^2
@@ -267,7 +265,7 @@ private:
 };
 
 
-bool is_muximum(int maximum, int val1, int val2) {
+bool is_maximum(int maximum, int val1, int val2) {
 	if (val1 > maximum) return false;
 	if (val2 > maximum) return false;
 	return true;
@@ -333,28 +331,43 @@ int main() {
 	// std::vector<double[3]> feature_points;
 	int threshold = 10;
 	sigma = 1;
-	for (int i=0; i<N; i++) {	
+	std::vector<cv::Mat_<unsigned char> > harris_laplacian1s;
+	for (int i=1; i<N-1; i++) {
 		cv::Mat_<unsigned char> harris_laplacian1(rows, cols);	
 		std::stringstream ss;
 		ss << sigma;
 		harris.sig_str = ss.str();
 		for (int y=0; y<rows; y++) {
-			for (int x=0; x<rows; x++) {
+			for (int x=0; x<cols; x++) {
 				int  max = 0;
-					if (int val=log_imgs[i](y, x) == threshold) {
-						max = val;
-						int val1 = log_imgs[i-1](y, x) ;
-						int val2 = log_imgs[i+1](y, x);
-						if (is_muximum(max, val1, val2)) {
-							harris_laplacian1(y, x) = UCHAR_MAX;
-						}
+				if (int val=log_imgs[i](y, x) > threshold) {
+					max = val;
+					int val1 = log_imgs[i-1](y, x) ;
+					int val2 = log_imgs[i+1](y, x);
+					if (is_maximum(max, val1, val2)) {
+						harris_laplacian1(y, x) = UCHAR_MAX;
 					}
+				}
 			}
 		}
 		// std::cout  << harris_laplacian1 << std::endl;
-
+		harris_laplacian1s.push_back(harris_laplacian1);
 		imwrite(harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext, harris_laplacian1);
 		sigma += k;
 	}
+	///// draw circle
+	cv::Mat_<unsigned char> src = cv::imread(harris.img_dir + "Chessboard" + harris.ext, 0);
+	for (int i=0; i<N-3; i++) {
+		for (int y=0; y<rows; y++) {
+			for (int x=0; x<cols; x++) {
+				if (harris_laplacian1s[i](y, x) == UCHAR_MAX) {
+					cv::Point2i pt(y, x);
+					cv::circle(src, pt, (i*k+1), 100);
+				}
+			}
+		}
+	}
+	cv::imwrite("circled_src.png", src);
+
 	return 0;
 }
