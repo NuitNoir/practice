@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/codeiq.iml" filepath="$PROJECT_DIR$/.idea/codeiq.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../laboratory/kriging/.idea/kriging.iml" filepath="$PROJECT_DIR$/../../laboratory/kriging/.idea/kriging.iml" />
+      <module fileurl="file://$USER_HOME$/GoogleDrive/Laboratory/kringingCodes/.idea/kringingCodes.iml" filepath="$USER_HOME$/GoogleDrive/Laboratory/kringingCodes/.idea/kringingCodes.iml" />
     </modules>
   </component>
 </project>
