@@ -305,7 +305,7 @@ int main() {
 	// 	sigma += k;
 	// 	// harris.comment_timestamp(std::to_string(i) + "th turn end");
 	// }
-	
+
 	///// make Log images
 	std::vector<cv::Mat_<int> > log_imgs;
 	sigma = 1;
@@ -320,12 +320,12 @@ int main() {
 		std::cout << harris.img_dir + "feature_points" +harris.sig_str+ harris.ext << std::endl;
 		std::cout << harris.img_dir + "gaussian"+harris.sig_str + harris.ext << std::endl;
 		std::cout << "feature=" << feature.size() << "\tsrc=" << src.size() << std::endl;
+		///// calculate LoG.
 		cv::Mat_<int> log_mat = harris.get_log_mat(src, feature, sigma);
 		cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
 		log_imgs.push_back(log_mat);
 		sigma += k;
 	}
-
 	///// decide LoG maximum
 	// std::vector<cv::Mat_<unsigned char> > harris_laplacian1s; //// (y, x, val);
 	// std::vector<double[3]> feature_points;
@@ -342,7 +342,7 @@ int main() {
 				int  max = 0;
 				if (int val=log_imgs[i](y, x) > threshold) {
 					max = val;
-					int val1 = log_imgs[i-1](y, x) ;
+					int val1 = log_imgs[i-1](y, x);
 					int val2 = log_imgs[i+1](y, x);
 					if (is_maximum(max, val1, val2)) {
 						harris_laplacian1(y, x) = UCHAR_MAX;
@@ -350,7 +350,8 @@ int main() {
 				}
 			}
 		}
-		// std::cout  << harris_laplacian1 << std::endl;
+		std::cout << "harris laplacian = " <<  harris_laplacian1.size() << std::endl;
+		std::cout << harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext << std::endl;
 		harris_laplacian1s.push_back(harris_laplacian1);
 		imwrite(harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext, harris_laplacian1);
 		sigma += k;
@@ -368,6 +369,5 @@ int main() {
 		}
 	}
 	cv::imwrite("circled_src.png", src);
-
 	return 0;
 }
