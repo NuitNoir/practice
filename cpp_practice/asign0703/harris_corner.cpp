@@ -114,7 +114,7 @@ public:
 				for (int i=-N; i<=N; i++) {
 					for (int j=-N; j<=N; j++) {
 						gauss_val = gaussian(sigma, sqrt(i*i + j*j)); ///// gaussian(sigma, x);
-						gauss += gauss_val*get_img_val(y+i, x+j, img);
+						gauss += gauss_val*get_img_val(y+i, x+j, img); 
 						// std::cout << gauss_val << ' ' << img(i, j) << std::endl;
 					}
 				}
@@ -123,6 +123,7 @@ public:
 		}
 		return mat_gauss;
 	}
+
 	double gaussian(int sigma, double x) {
 		double gauss = (1.0/(sigma*sigma*2.0*M_PI))*exp(-x*x/(2.0*sigma*sigma) ) ;
 		return gauss;
@@ -179,7 +180,7 @@ public:
 	///// args: src image, feature points image
 	cv::Mat_<int> get_log_mat(cv::Mat_<unsigned char> src, cv::Mat_<unsigned char> feature, double sigma) {
 		int rows = src.rows, cols = src.cols;
-		cv::Mat_<int> log_mat(rows, cols);
+		cv::Mat_<int> log_mat = cv::Mat::zeros(rows, cols, CV_32FC1);
 		for (int y=0; y<rows; y++) {
 			for (int x=0; x<cols; x++) {
 				if (feature[y][x] == UCHAR_MAX) {
@@ -265,7 +266,7 @@ private:
 };
 
 
-bool is_maximum(int maximum, int val1, int val2) {
+bool is_max(int maximum, int val1, int val2) {
 	if (val1 > maximum) return false;
 	if (val2 > maximum) return false;
 	return true;
@@ -329,11 +330,11 @@ int main() {
 	///// decide LoG maximum
 	// std::vector<cv::Mat_<unsigned char> > harris_laplacian1s; //// (y, x, val);
 	// std::vector<double[3]> feature_points;
-	int threshold = 10;
-	sigma = 1;
+	int threshold =  10; 
+	sigma = 1 + k;
 	std::vector<cv::Mat_<unsigned char> > harris_laplacian1s;
 	for (int i=1; i<N-1; i++) {
-		cv::Mat_<unsigned char> harris_laplacian1(rows, cols);	
+		cv::Mat_<unsigned char> harris_laplacian1 = cv::Mat::zeros(rows, cols, CV_8UC1);;	
 		std::stringstream ss;
 		ss << sigma;
 		harris.sig_str = ss.str();
@@ -344,30 +345,32 @@ int main() {
 					max = val;
 					int val1 = log_imgs[i-1](y, x);
 					int val2 = log_imgs[i+1](y, x);
-					if (is_maximum(max, val1, val2)) {
+					if (is_max(max, val1, val2)) {
+						std::cout << y << "," << x << std::endl;
 						harris_laplacian1(y, x) = UCHAR_MAX;
 					}
 				}
 			}
 		}
-		std::cout << "harris laplacian = " <<  harris_laplacian1.size() << std::endl;
-		std::cout << harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext << std::endl;
-		harris_laplacian1s.push_back(harris_laplacian1);
-		imwrite(harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext, harris_laplacian1);
+		// std::cout << "harris laplacian = " <<  harris_laplacian1.size() << std::endl; 
+		std::cout << harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext << std::endl; 
+		harris_laplacian1s.push_back(harris_laplacian1); 
+		imwrite(harris.img_dir + "harris_laplacian1_" + harris.sig_str + harris.ext, harris_laplacian1); 
 		sigma += k;
 	}
 	///// draw circle
 	cv::Mat_<unsigned char> src = cv::imread(harris.img_dir + "Chessboard" + harris.ext, 0);
+	int f = 3;
 	for (int i=0; i<N-3; i++) {
 		for (int y=0; y<rows; y++) {
 			for (int x=0; x<cols; x++) {
 				if (harris_laplacian1s[i](y, x) == UCHAR_MAX) {
 					cv::Point2i pt(y, x);
-					cv::circle(src, pt, (i*k+1), 100);
+					cv::circle(src, pt, (i*k*f), 100);
 				}
 			}
 		}
 	}
-	cv::imwrite("circled_src.png", src);
+	cv::imwrite(harris.img_dir + "circled_src" + harris.ext, src);
 	return 0;
 }
