@@ -10,6 +10,8 @@ class parser:
   def tokenize(self, text):
     # 注意点。変数にエンコード済みテキストを渡す
     # 参照 http://shogo82148.github.io/blog/2012/12/15/mecab-python/
+    if (text == None):
+      text = ""
     encode_text = text.encode('utf-8')
     node = mecab.parseToNode(encode_text)
     while node:
