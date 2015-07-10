@@ -13,33 +13,11 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian1.000000.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian2.200000.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian3.400000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian4.600000.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian5.800000.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian7.000000.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian8.200000.png" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian9.400000.png" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Classification/parse_mod.py" afterPath="$PROJECT_DIR$/Classification/jeek_es/parse_mod.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG1.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG2.2.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG2.2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG3.4.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG3.4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG4.6.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG4.6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG5.8.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG5.8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG7.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG7.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG8.2.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG8.2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG9.4.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/LoG9.4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/harris_corner" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/harris_corner" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_1.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_2.2.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_2.2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_3.4.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_3.4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_4.6.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_4.6.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_5.8.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_5.8.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_7.png" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/img2/harris_laplacian1_7.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/.idea/codeiq.iml" afterPath="$PROJECT_DIR$/codeiq/.idea/codeiq.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/codeiq.sublime-workspace" afterPath="$PROJECT_DIR$/codeiq/codeiq.sublime-workspace" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/harris_corner.cpp" afterPath="$PROJECT_DIR$/cpp_practice/asign0703/harris_corner.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Classification/jeek_es/jeek_parse.py" afterPath="$PROJECT_DIR$/Classification/jeek_es/jeek_parse.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/.idea/modules.xml" afterPath="$PROJECT_DIR$/codeiq/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/.idea/misc.xml" afterPath="$PROJECT_DIR$/codeiq/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/.idea/workspace.xml" afterPath="$PROJECT_DIR$/codeiq/.idea/workspace.xml" />
     </list>
     <ignored path="practice.iws" />
@@ -64,7 +42,7 @@
       <file leaf-file-name="jeek_parse.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Classification/jeek_es/jeek_parse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64122134">
+            <state vertical-scroll-proportion="0.6436782">
               <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
               <folding>
                 <element signature="e#23#45#0" expanded="true" />
@@ -511,9 +489,9 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.12332629" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36768803" sideWeight="0.6088795" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32692307" sideWeight="0.4947146" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33653846" sideWeight="0.6814658" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33734939" sideWeight="0.6814658" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33653846" sideWeight="0.31853417" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33734939" sideWeight="0.31853417" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.4918957" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -947,7 +925,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Classification/jeek_es/jeek_parse.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64122134">
+        <state vertical-scroll-proportion="0.6436782">
           <caret line="53" column="15" selection-start-line="53" selection-start-column="15" selection-end-line="53" selection-end-column="15" />
           <folding>
             <element signature="e#23#45#0" expanded="true" />
