@@ -27,6 +27,12 @@ public:
 	cv::Mat_<double> img_fy2;
 	cv::Mat_<double> img_fxy;
 
+	cv::Mat_<double> mat_intensity;
+	cv::Mat_<double> mat_radian;
+	cv::Mat_<double> mat_weight;
+
+	double sigma;
+
 	std::string img_dir;
 	std::string ext;
 	std::string sig_str;
@@ -34,33 +40,61 @@ public:
 	void set_img(cv::Mat_<unsigned char> img) {
 		this->img = img.clone();
 		this->img_char = img.clone();
-		// std::cout << img_char << std::endl;
-		// this->img.convertTo(this->img_d, CV_64FC1);
-		// this->img_d = img.clone();
+		this->img.convertTo(this->img_d, CV_64FC1);
 	}
 
 	double get_intensity(int y, int x) {
 		double intensity = 0;	
-		// std::cout << this->img_fx2 << std::endl;
 		intensity = sqrt(this->img_fx2(y, x) + this->img_fy2(y, x));
+		// std::cout << "intensity=" << intensity << std::endl;
 		return intensity;
 	}
-	cv::Mat_<double> get_intensity_mat(cv::Mat_<unsigned char> src) {
-		int rows = src.rows, cols = src.cols;
-		// cv::Mat_<double> mat_intensity = cv::Mat::zeros(rows, cols, CV_64FC1);
-		cv::Mat_<double> mat_intensity(rows, cols);
+	cv::Mat_<double> get_intensity_mat() {
+		int rows = this->img.rows, cols = this->img.cols;
+		// cv::Mat_<double> mat_intensity(rows, cols);
+		this->mat_intensity = cv::Mat::zeros(rows, cols, CV_64FC1);
 		for (int y=0; y < rows; y++) {
 			for (int x=0; x < cols; x++) {
-				// comment_timestamp("intensity");
-				std::cout << rows << ' ' << cols << std::endl;
-				mat_intensity[y][x] = get_intensity(y, x);
+				this->mat_intensity[y][x] = get_intensity(y, x);
 			}
 		}
+		return mat_intensity;
+	}
+	double get_radian(int y, int x) {
+		double radian = 0;
+		double fx = sqrt(this->img_fx2(y,x));
+		double fy = sqrt(this->img_fy2(y,x));
+		radian = atan(fy/fx);
+		// std::cout << "radian=" << radian << std::endl;
+		return radian;
+	}
+	cv::Mat_<double> get_radian_mat() {
+		int rows = this->img.rows, cols = this->img.cols;
+		this->mat_radian = cv::Mat::zeros(rows, cols, CV_64FC1);
+		cv::Mat_<double> mat_radian(rows, cols);
+		for (int y=0; y < rows; y++) {
+			for (int x=0; x < cols; x++) {
+				this->mat_radian[y][x] = get_radian(y, x);
+			}
+		}
+		return mat_radian;
+	}
+	cv::Mat_<double> get_weight_mat(double sigma) {
+		int rows = this->img.rows, cols = this->img.cols;
+		// cv::Mat_<double> mat_weight(rows, cols);
+		this->mat_weight = cv::Mat::zeros(rows, cols, CV_64FC1);
+		for (int y=0; y < rows; y++) {
+			for (int x=0; x < cols; x++) {
+				this->mat_weight[y][x] = get_weight(y, x, sigma);
+			}
+		}
+		return mat_weight;
 	}
 	double get_gauss_val(int y, int x, double sigma) {
 		double gauss = (1.0/(sigma*sigma*2.0*M_PI))*exp(-x*x/(2.0*sigma*sigma) ) ;
 		return gauss;
 	}
+
 	double get_weight(int y, int x, double sigma) {
 		// this->differentiate();
 		double intensity = this->get_intensity(y, x);
@@ -68,10 +102,6 @@ public:
 
 		double weight = intensity*gauss_val;
 		return weight;
-	}
-	double get_radian() {
-		double radian = 0;
-		return radian;
 	}
 	// get image differentiation 
 	// fx^2, fxfy, fyfx, fy^2
@@ -124,6 +154,11 @@ public:
 		double val = img(y, x);
 		return val;
 	}
+	void set_sigma(double sigma) {
+		std::stringstream ss;
+		ss << sigma;
+		this->sig_str = ss.str();
+	}
 
 };
 
@@ -151,27 +186,48 @@ int main() {
 	std::vector<cv::Mat_<double> > radian_mats;
 	std::vector<cv::Mat_<double> > weight_mats;
 
-	for (int i= 0; i < 6; i++,  sigma += k) {
-		std::stringstream ss;
-		ss << sigma;
-		sift.sig_str = ss.str();
+	///// read images
+	for (int i= 0; i < 7; i++,  sigma += k) {
+		sift.set_sigma(sigma);
 		int N = sigma*3;
 		cv::Mat_<unsigned char> feature_img =  cv::imread(sift.img_dir + "harris_laplacian1_" + sift.sig_str + sift.ext, 0);
 		cv::Mat_<unsigned char> src_img = cv::imread(sift.img_dir + "gaussian" + sift.sig_str + sift.ext, 0);
 		src_imgs.push_back(src_img);
 		feature_imgs.push_back(feature_img);
 	}
-	for (int i=0; i < (int)src_imgs.size(); i++) {
-		cv::Mat_<double>  intensity_mat;
-		cv::Mat_<double>  radian_mat;
-		cv::Mat_<double>  weight_mat;
+	comment_timestamp("image read end");
+	///// intensity, radian, weight calculation
+	sigma = 1;
+	for (int i=0; i < (int)src_imgs.size(); i++, sigma+=k) {
+		cv::Mat_<double> intensity_mat;
+		cv::Mat_<double> radian_mat;
+		cv::Mat_<double> weight_mat;
 		sift.set_img(src_imgs[i]);
-		sift.differentiate(src_imgs[i]);
-		intensity_mat = sift.get_intensity_mat(src_imgs[i]);
+		sift.set_sigma(sigma);
+		// sift.differentiate(src_imgs[i]);
+		cv::Mat_<double> img_fx2 = cv::imread(sift.img_dir + "fx2" + sift.sig_str + sift.ext, 0);
+		cv::Mat_<double> img_fy2 = cv::imread(sift.img_dir + "fy2" + sift.sig_str + sift.ext, 0);
+		comment_timestamp(sift.img_dir + "fx2" + sift.sig_str + sift.ext);
+		sift.img_fx2 = img_fx2;
+		sift.img_fy2 = img_fy2;
+		intensity_mat = sift.get_intensity_mat();
+		radian_mat = 	sift.get_radian_mat();
+		weight_mat = 	sift.get_weight_mat(sigma);
 		cv::imwrite(sift.img_dir + "intensity" + sift.sig_str + sift.ext, intensity_mat ); 
+		cv::imwrite(sift.img_dir + "radian" + sift.sig_str + sift.ext, intensity_mat ); 
+		cv::imwrite(sift.img_dir + "weight" + sift.sig_str + sift.ext, intensity_mat ); 
 	}
-
+	comment_timestamp("intensity, radian, weight calculation end");
 	/// gauss window
+	for (int i=0; i<(int)feature_imgs.size(); i++) {
+		for (int y=0; y < rows; y++) {
+			for (int x=0; x < cols; x++) {
+				if (feature_imgs[i](y, x) == UCHAR_MAX) {
+					
+				}
+			}
+		}
+	}
 
 	///// weight
 	double weights[rows][cols];

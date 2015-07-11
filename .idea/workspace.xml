@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2470183-9746-44ff-bca5-9122594231c6" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG1.000000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG2.200000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG3.400000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG4.600000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG5.800000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG7.000000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/LoG8.200000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian1.000000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian2.200000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian3.400000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian5.800000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian7.000000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian8.200000.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/cpp_practice/asign0703/img/gaussian9.400000.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/.idea/misc.xml" afterPath="$PROJECT_DIR$/codeiq/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/codeiq/.idea/workspace.xml" afterPath="$PROJECT_DIR$/codeiq/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="c2470183-9746-44ff-bca5-9122594231c6" name="Default" comment="" />
     <ignored path="practice.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
