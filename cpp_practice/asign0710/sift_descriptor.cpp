@@ -58,14 +58,16 @@ public:
 				this->mat_intensity[y][x] = get_intensity(y, x);
 			}
 		}
-		return mat_intensity;
+		return this->mat_intensity;
 	}
+
 	double get_radian(int y, int x) {
 		double radian = 0;
 		double fx = sqrt(this->img_fx2(y,x));
 		double fy = sqrt(this->img_fy2(y,x));
 		radian = atan(fy/fx);
-		// std::cout << "radian=" << radian << std::endl;
+		if (fx == 0) radian = 2*M_PI + 1;
+		// if (fx != 0 && fy != 0) std::cout << "radian=" << radian << " fx=" << fx << " fy=" << fy <<  std::endl;
 		return radian;
 	}
 	cv::Mat_<double> get_radian_mat() {
@@ -77,7 +79,7 @@ public:
 				this->mat_radian[y][x] = get_radian(y, x);
 			}
 		}
-		return mat_radian;
+		return this->mat_radian;
 	}
 	cv::Mat_<double> get_weight_mat(double sigma) {
 		int rows = this->img.rows, cols = this->img.cols;
@@ -88,7 +90,7 @@ public:
 				this->mat_weight[y][x] = get_weight(y, x, sigma);
 			}
 		}
-		return mat_weight;
+		return this->mat_weight;
 	}
 	double get_gauss_val(int y, int x, double sigma) {
 		double gauss = (1.0/(sigma*sigma*2.0*M_PI))*exp(-x*x/(2.0*sigma*sigma) ) ;
@@ -187,7 +189,7 @@ int main() {
 	std::vector<cv::Mat_<double> > weight_mats;
 
 	///// read images
-	for (int i= 0; i < 7; i++,  sigma += k) {
+	for (int i= 0; i < 5; i++,  sigma += k) {
 		sift.set_sigma(sigma);
 		int N = sigma*3;
 		cv::Mat_<unsigned char> feature_img =  cv::imread(sift.img_dir + "harris_laplacian1_" + sift.sig_str + sift.ext, 0);
@@ -199,9 +201,6 @@ int main() {
 	///// intensity, radian, weight calculation
 	sigma = 1;
 	for (int i=0; i < (int)src_imgs.size(); i++, sigma+=k) {
-		cv::Mat_<double> intensity_mat;
-		cv::Mat_<double> radian_mat;
-		cv::Mat_<double> weight_mat;
 		sift.set_img(src_imgs[i]);
 		sift.set_sigma(sigma);
 		// sift.differentiate(src_imgs[i]);
@@ -210,20 +209,66 @@ int main() {
 		comment_timestamp(sift.img_dir + "fx2" + sift.sig_str + sift.ext);
 		sift.img_fx2 = img_fx2;
 		sift.img_fy2 = img_fy2;
-		intensity_mat = sift.get_intensity_mat();
-		radian_mat = 	sift.get_radian_mat();
-		weight_mat = 	sift.get_weight_mat(sigma);
+		cv::Mat_<double> intensity_mat = sift.get_intensity_mat();
+		cv::Mat_<double> radian_mat = sift.get_radian_mat();
+		// std::cout << radian_mat << std::endl;
+		// weight_mat = 	sift.get_weight_mat(sigma);
 		cv::imwrite(sift.img_dir + "intensity" + sift.sig_str + sift.ext, intensity_mat ); 
 		cv::imwrite(sift.img_dir + "radian" + sift.sig_str + sift.ext, intensity_mat ); 
-		cv::imwrite(sift.img_dir + "weight" + sift.sig_str + sift.ext, intensity_mat ); 
+		intensity_mats.push_back(intensity_mat);
+		radian_mats.push_back(radian_mat);
+		// cv::imwrite(sift.img_dir + "weight" + sift.sig_str + sift.ext, intensity_mat ); 
 	}
 	comment_timestamp("intensity, radian, weight calculation end");
 	/// gauss window
-	for (int i=0; i<(int)feature_imgs.size(); i++) {
+	sigma = 1;
+	int hist_dim = 36;
+	std::vector<cv::Mat_<unsigned char> > direction_mats;
+	for (int scale=0; scale<(int)feature_imgs.size(); scale++, sigma+=k) {
+		sift.set_sigma(sigma);
+		// radian_mat = cv::imread(sift.img_dir + "radian" + sift.sig_str + sift.ext);
+		// radian_mat = cv::imread(sift.img_dir + "weight" + sift.sig_str + sift.ext);
+		int N = sigma*3;
+		int nth = 0;
 		for (int y=0; y < rows; y++) {
 			for (int x=0; x < cols; x++) {
-				if (feature_imgs[i](y, x) == UCHAR_MAX) {
-					
+				if (feature_imgs[scale](y, x) == UCHAR_MAX) {
+					nth ++;
+					cv::Mat_<unsigned char> direction_mat = cv::Mat::zeros(rows, cols, CV_8UC1);
+					comment_timestamp("scale="+std::to_string(scale)+' '+std::to_string(nth) + "th feature point");
+					// cv::Mat_<unsigned char> hist = cv::Mat::zeros(2*N, 2*N, CV_64FC1);
+					double hist[hist_dim];
+					for (int i= -N; i<= N; i++) {
+						for (int j= -N; j<= N; j++) {
+							double theta = sift.get_img_val( y+i, x+j, radian_mats[scale]);
+							// comment_timestamp("theta=" + std::to_string(theta) + ' ' + std::to_string(j));
+							int direction = theta*(hist_dim/(2*M_PI)); ///// direction [0, 35]
+							if (theta == 2*M_PI+1) continue;
+							// if ( !(direction>=0 && direction<hist_dim)) assert("direction overflow" + std::to_string(direction));
+							assert( (direction>=-1 && direction < hist_dim ));
+							double weight = sift.get_img_val(y+i, x+j, intensity_mats[scale]) * sift.get_gauss_val(i,j,sigma);
+							// comment_timestamp(std::to_string(i) + ' ' + std::to_string(j) + ' ' + std::to_string(direction));
+							hist[direction] += weight;
+							// std::cout << "direction=" << direction << " weight=" << hist[direction] << std::endl;
+							// direction_mat[y+i][x+j] = direction*7;
+						}
+					}
+					double max = -1;
+					int major_direction = -1;
+					for (int dir=0; dir<hist_dim; dir++) {
+						// std::cout << hist[dir] << std::endl;
+						if (hist[dir] > max) {
+							max = hist[hist_dim];
+							major_direction = dir;
+						}
+					}
+					///// TODO major direction is not only one. 
+					std::cout << "major direction = " <<  major_direction << " hist val=" << max << std::endl;
+					// cv::imwrite(sift.img_dir + "direction" + sift.sig_str + "_"+std::to_string(nth) + sift.ext, direction_mat);
+
+					///// sift descriptor
+
+
 				}
 			}
 		}
