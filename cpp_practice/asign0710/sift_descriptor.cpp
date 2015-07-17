@@ -235,11 +235,13 @@ int main() {
 				if (feature_imgs[scale](y, x) == UCHAR_MAX) {
 					nth ++;
 					cv::Mat_<unsigned char> direction_mat = cv::Mat::zeros(rows, cols, CV_8UC1);
-					comment_timestamp("scale="+std::to_string(scale)+' '+std::to_string(nth) + "th feature point");
+					// comment_timestamp("scale="+std::to_string(scale)+' '+std::to_string(nth) + "th feature point");
 					// cv::Mat_<unsigned char> hist = cv::Mat::zeros(2*N, 2*N, CV_64FC1);
-					double hist[hist_dim];
+					double hist[hist_dim] ;
+					std::fill_n(hist, hist_dim, 0);
 					for (int i= -N; i<= N; i++) {
 						for (int j= -N; j<= N; j++) {
+							///// TODO theta must be 0-360 but now 0-90. 
 							double theta = sift.get_img_val( y+i, x+j, radian_mats[scale]);
 							// comment_timestamp("theta=" + std::to_string(theta) + ' ' + std::to_string(j));
 							int direction = theta*(hist_dim/(2*M_PI)); ///// direction [0, 35]
@@ -248,6 +250,7 @@ int main() {
 							assert( (direction>=-1 && direction < hist_dim ));
 							double weight = sift.get_img_val(y+i, x+j, intensity_mats[scale]) * sift.get_gauss_val(i,j,sigma);
 							// comment_timestamp(std::to_string(i) + ' ' + std::to_string(j) + ' ' + std::to_string(direction));
+							// std::cout << "weight=" <<  weight << "   \tdirection=" << direction<< std::endl;
 							hist[direction] += weight;
 							// std::cout << "direction=" << direction << " weight=" << hist[direction] << std::endl;
 							// direction_mat[y+i][x+j] = direction*7;
@@ -258,22 +261,37 @@ int main() {
 					for (int dir=0; dir<hist_dim; dir++) {
 						// std::cout << hist[dir] << std::endl;
 						if (hist[dir] > max) {
-							max = hist[hist_dim];
+							max = hist[dir];
 							major_direction = dir;
 						}
+						// std::cout << major_direction << ' ' << hist[dir] << std::endl;
 					}
 					///// TODO major direction is not only one. 
 					std::cout << "major direction = " <<  major_direction << " hist val=" << max << std::endl;
 					// cv::imwrite(sift.img_dir + "direction" + sift.sig_str + "_"+std::to_string(nth) + sift.ext, direction_mat);
 
 					///// sift descriptor
-
-
+					y1 = y - N;
+					y2 = y + N;
+					x1 = x - N;
+					x2 = x+ N;
+					cv::Point2d pt1(x1, y1);
+					cv::Point2d pt2(x2, y2);
+					cv::Affine R();
+					pt1 = R*pt1;
+					pt2 = R*pt2;
+					dx = (pt2.x - pt1.x) / (2*N) ;
+					dy = (pt2.y - pt1.y) / (2*N) ;
+					cv::Mat_<unsigned char> descriptor = cv::Mat::zeros(2*N, 2*N, CV_8UC1);
+					for (int i=0; i<2*N; i++) {
+						for (int j=0; j<2*N; j++) {
+							descriptor[i][j] = sift.get_direction((int)(pt1.y + i*dy + 0.5), (int)(pt1.x + i*dx + 0.5); ///// get image value by Nearest Neightbor. 
+						}
+					}
 				}
 			}
 		}
 	}
-
 	///// weight
 	double weights[rows][cols];
 	for (int y=0; y<rows; y++) {
@@ -281,11 +299,8 @@ int main() {
 			weights[y][x] = sift.get_weight(y, x, sigma);
 		}
 	}
-
-
 	//// hist
 	// sift.get_hist();
-
 
 	return 0;
 }

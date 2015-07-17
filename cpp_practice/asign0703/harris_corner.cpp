@@ -121,6 +121,7 @@ public:
 				mat_gauss(y, x) = gauss;
 			}
 		}
+		
 		return mat_gauss;
 	}
 
@@ -275,37 +276,37 @@ bool is_max(int maximum, int val1, int val2) {
 int main() {
 	Harris harris = Harris();
 
-	harris.img_dir = "img3/";
+	harris.img_dir = "img2/";
 	harris.ext = ".png";
 	harris.sig_str = "";
 	double sigma = 1;
 	double k = 1.2;
 	double N = 8;
-	cv::Mat_<double> img = cv::imread(harris.img_dir + "cat1" + harris.ext, 0);
+	cv::Mat_<double> img = cv::imread(harris.img_dir + "Chessboard" + harris.ext, 0);
 	int rows = img.rows, cols = img.cols;
 	std::vector<std::string> filenames;
-	for (int i=0; i< N; i++) {
-		// harris.sig_str = std::to_string(sigma);
-		std::stringstream ss;
-		ss << sigma;
-		harris.sig_str = ss.str();
+	// for (int i=0; i< N; i++) {
+	// 	// harris.sig_str = std::to_string(sigma);
+	// 	std::stringstream ss;
+	// 	ss << sigma;
+	// 	harris.sig_str = ss.str();
 
-		cv::Mat_<double> scaled(img.rows, img.cols);
-		scaled = harris.gaussian_filter(img, sigma);
-		harris.comment_timestamp("gaussian end");
-		cv::imwrite(harris.img_dir + "gaussian"+harris.sig_str+harris.ext, scaled);
-		// cv::Mat_<double> mat_LoG(img.rows, img.cols);
-		cv::Mat_<unsigned char> corner = harris.harris_operator(scaled, sigma);
-		harris.comment_timestamp("harris operator end");
-		// log_imgs.push_back(corner);
-		cv::Mat_<unsigned char> src = cv::imread(harris.img_dir + "gaussian"+harris.sig_str+harris.ext, 0);
-		cv::Mat_<unsigned char> feature = cv::imread(harris.img_dir + "feature_points"+harris.sig_str+".png", 0);
-		cv::Mat_<double> log_mat = harris.get_log_mat(src, feature, sigma);
-		harris.comment_timestamp("LoG end");
-		cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
-		sigma += k;
-		// harris.comment_timestamp(std::to_string(i) + "th turn end");
-	}
+	// 	cv::Mat_<double> scaled(img.rows, img.cols);
+	// 	scaled = harris.gaussian_filter(img, sigma);
+	// 	harris.comment_timestamp("gaussian end");
+	// 	cv::imwrite(harris.img_dir + "gaussian"+harris.sig_str+harris.ext, scaled);
+	// 	// cv::Mat_<double> mat_LoG(img.rows, img.cols);
+	// 	cv::Mat_<unsigned char> corner = harris.harris_operator(scaled, sigma);
+	// 	harris.comment_timestamp("harris operator end");
+	// 	// log_imgs.push_back(corner);
+	// 	cv::Mat_<unsigned char> src = cv::imread(harris.img_dir + "gaussian"+harris.sig_str+harris.ext, 0);
+	// 	cv::Mat_<unsigned char> feature = cv::imread(harris.img_dir + "feature_points"+harris.sig_str+".png", 0);
+	// 	cv::Mat_<double> log_mat = harris.get_log_mat(src, feature, sigma);
+	// 	harris.comment_timestamp("LoG end");
+	// 	cv::imwrite(harris.img_dir+"LoG"+harris.sig_str+harris.ext, log_mat);
+	// 	sigma += k;
+	// 	// harris.comment_timestamp(std::to_string(i) + "th turn end");
+	// }
 
 	///// make Log images
 	std::vector<cv::Mat_<int> > log_imgs;
@@ -365,7 +366,7 @@ int main() {
 		for (int y=0; y<rows; y++) {
 			for (int x=0; x<cols; x++) {
 				if (harris_laplacian1s[i](y, x) == UCHAR_MAX) {
-					cv::Point2i pt(y, x);
+					cv::Point2i pt(x, y);
 					cv::circle(src, pt, (i*k*f), 100);
 				}
 			}
