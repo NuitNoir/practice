@@ -114,9 +114,87 @@ public:
 	}
 	///// return 0...7
 	int get_direction(cv::Mat_<unsigned char> img, int y, int x) {
-
-
+		int direction = -1;
+		return direction;
 	}
+	///// return major_direction 
+	int get_major_direction(int y, int x, int N, cv::Mat_<double> radian_mat, cv::Mat_<double> intensity_mat) {
+		int hist_dim = 36;
+		double hist[hist_dim] ;
+		sift.differentiate(this->src);
+		cv::Mat_<double> intensity_mat = sift.get_intensity_mat();
+		cv::Mat_<double> radian_mat = sift.get_radian_mat();
+		std::fill_n(hist, hist_dim, 0);
+		for (int i= -N; i<= N; i++) {
+			for (int j= -N; j<= N; j++) {
+				///// TODO theta must be 0-360 but now 0-90. 
+				double theta = this->get_img_val( y+i, x+j, radian_mat);
+				// comment_timestamp("theta=" + std::to_string(theta) + ' ' + std::to_string(j));
+				int direction = theta*(hist_dim/(2*M_PI)); ///// direction [0, 35]
+				if (theta == 2*M_PI+1) continue;
+				// if ( !(direction>=0 && direction<hist_dim)) assert("direction overflow" + std::to_string(direction));
+				assert( (direction>=-1 && direction < hist_dim ));
+				double weight = this->get_img_val(y+i, x+j, intensity_mat) * this->get_gauss_val(i,j,sigma);
+				// comment_timestamp(std::to_string(i) + ' ' + std::to_string(j) + ' ' + std::to_string(direction));
+				// std::cout << "weight=" <<  weight << "   \tdirection=" << direction<< std::endl;
+				hist[direction] += weight;
+				// std::cout << "direction=" << direction << " weight=" << hist[direction] << std::endl;
+				// direction_mat[y+i][x+j] = direction*7;
+			}
+		}
+		double max = -1;
+		int major_direction = -1;
+		for (int dir=0; dir<hist_dim; dir++) {
+			// std::cout << hist[dir] << std::endl;
+			if (hist[dir] > max) {
+				max = hist[dir];
+				major_direction = dir;
+			}
+			// std::cout << major_direction << ' ' << hist[dir] << std::endl;
+		}
+		return major_direction;
+	}
+
+	cv::Mat_<double> get_sift_descriptor() {
+				//////////////////////////////////////////////////
+		///// sift descriptor
+		double theta = (-1)*major_direction*(2*M_PI/36);
+		cv::Mat_<unsigned char> dst = sift.rotate(theta, y, x);
+		sift.differentiate();
+		cv::Mat_<double> intensity_mat = sift.get_intensity_mat();
+		cv::Mat_<double> radian_mat = sift.get_radian_mat();
+
+		int grid_base = 4;
+		int grid_mul = N/grid_base + 1;
+		int grid_size = grid_base*grid_mul;
+
+		int hist_dim = 8;
+		/////  descriptor[i][j] has direction (0...7)  grid_size x grid_size
+		cv::Mat_<unsigned char> descriptor = cv::Mat::zeros(grid_size, grid_size, CV_8UC1);
+		///// 4x4 8channel 
+		cv::Mat_<double> sift_descriptor = cv::Mat::zeros(grid_base*grid_base*hist_dim, 1, CV_8UC1);
+	
+		for (int i=-grid_size/2; i<grid_size/2; i++) {
+			for (int j=-grid_size/2; j<grid_size/2; j++) {
+				///// TODO theta must be 0-360 but now 0-90. 
+				double theta = sift.get_img_val( y+i, x+j, radian_mat);
+				int direction = theta*(hist_dim/(2*M_PI)); ///// direction [0, 8]
+				if (theta == 2*M_PI+1) continue;
+				assert( (direction>=-1 && direction < hist_dim ));
+				double weight = sift.get_img_val(y+i, x+j, intensity_mat) * sift.get_gauss_val(i,j,sigma);
+
+				descriptors(i+grid_size/2, j+grid_size/2) = sift.get_direction(dst, y+i, x+j);
+				// descriptor[i][j] = sift.get_direction((int)(pt1.y + i*dy + 0.5), (int)(pt1.x + i*dx + 0.5) ); ///// get image value by Nearest Neightbor. 
+				int grid_row = i/grid_mul, grid_col = j/grid_mul;
+				sift_descriptor(grid_row*grid_base*hist_dim + grid_col*hist_dim + descriptor(i,j), 0) += weight;
+			}
+		}
+		std::cout << sift_descriptor << std::endl;
+		//////////////////////////////////////////////////
+		sift_descriptors.push_back(sift_descriptor);
+		return sift_descriptor;
+	}
+
 	cv::Mat_<unsigned char> rotate(double angle, int y, int x) {
 	    	int rows = this->src.rows, cols = this->src.cols;
 
