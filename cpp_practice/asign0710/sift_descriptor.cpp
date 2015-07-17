@@ -6,8 +6,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "../lib/ppoint.hpp"
-#include "../lib/affin.hpp"
-
+#include "../lib/affin.hpp"		
 
 void comment_timestamp(std::string comment) {
 	time_t now = time(0);
