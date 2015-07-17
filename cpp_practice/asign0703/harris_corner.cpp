@@ -276,13 +276,13 @@ bool is_max(int maximum, int val1, int val2) {
 int main() {
 	Harris harris = Harris();
 
-	harris.img_dir = "img2/";
+	harris.img_dir = "img3/";
 	harris.ext = ".png";
 	harris.sig_str = "";
 	double sigma = 1;
 	double k = 1.2;
 	double N = 8;
-	cv::Mat_<double> img = cv::imread(harris.img_dir + "Chessboard" + harris.ext, 0);
+	cv::Mat_<double> img = cv::imread(harris.img_dir + "cat1" + harris.ext, 0);
 	int rows = img.rows, cols = img.cols;
 	std::vector<std::string> filenames;
 	// for (int i=0; i< N; i++) {
