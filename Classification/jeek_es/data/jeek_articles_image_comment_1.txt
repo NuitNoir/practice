@@ -9,7 +9,7 @@
 225	,	66
 388	-	107
 548	.	319
-696	/	143
+696	/	143/Users/kyota/GitHub/practice/Classification/jeek_es/data/lsi.model
 705	/">	182
 319	/">『	17
 22	/</	21
