@@ -43,11 +43,15 @@ def main():
 
   # BoWの作成
   # global vectors
-  vectors = []
-  for document in documents:
-    tmp = dictionary.doc2bow(document)
-    dense = list(matutils.corpus2dense([tmp], num_terms=len(dictionary)).T[0])
-    vectors.append(dense)
+  # vectors = []
+  # for document in documents:
+  #   tmp = dictionary.doc2bow(document)
+  #   dense = list(matutils.corpus2dense([tmp], num_terms=len(dictionary)).T[0])
+  #   vectors.append(dense)
+
+
+  corpus = corpora.MmCorpus
+
 
   #### LSI
   lsi_docs = {}
