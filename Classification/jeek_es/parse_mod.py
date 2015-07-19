@@ -1,5 +1,6 @@
+# -*- coding:utf-8 -*-
 import MeCab
-# -*- coding:utf-8 -*- 
+import re
 
 class parser:
   def __init__(self):
@@ -14,18 +15,22 @@ class parser:
       text = ""
     encode_text = text.encode('utf-8')
     node = mecab.parseToNode(encode_text)
+    # print pattern
     while node:
       if node.feature.split(',')[0] == '名詞':
-        #node.decode('utf-8')
+        # if pattern.match(node.surface) :
+        #   print node.surface
+        #   node = node.next
+        #   continue
         #yield node.feature.split # .decode('utf-8')
         #print node.surface + '\t' + node.feature
         yield node.surface
       node = node.next
 
-  def get_words(contents):
+  def get_words(self, contents):
     ret = []
     for k, content in contents.item():
-      ret.append(get_words_main(content))
+      ret.append(self.get_words_main(content))
     return ret
 
   def get_words_main(self, content):
