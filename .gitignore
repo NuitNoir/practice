@@ -8,3 +8,5 @@ RemoteSystemsTempFiles
 
 
 Classification/DeepLearning/Chainer/chainer/
+
+*.gz
