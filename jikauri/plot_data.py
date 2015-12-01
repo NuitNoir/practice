@@ -12,6 +12,10 @@ import math
 import regression
 import svr
 
+# def curve_fit_func(x, a1, a2, b0, b1, b2, b3):
+def curve_fit_func(x, a1, a2, b0):
+    return a1 * np.exp(-a2 * x) + b0 #+ b1*x + b2*x**2 + b3*x**3
+
 class DataPlotter:
     " データプロットクラス "
     def plot_datum(self, x_datum, y_data, ylim, xlabels, dirname, finds, x_axes, y_axis):
@@ -47,11 +51,15 @@ class DataPlotter:
             # y = clf.predict(X)
             reg = regression.Regression()
             # X, y = reg.predict(np.arange(0,50), y_means, clf='svr', kernel='rbf', C=1e3, gamma=0.2) # clf='ridge')
-            X, y = reg.predict(x_data[:5000], x_data[5000:10000], y_data[:5000], y_data[5000:10000], clf='polyfit', kernel='linear', C=30, gamma=0.3, degree=2) # clf='ridge')
+            func = curve_fit_func
+            data_num = 5000
+            # X, y = reg.predict(x_data[:data_num], x_data[data_num:data_num*2], y_data[:data_num], y_data[data_num:data_num*2], clf='polyfit', kernel='linear', func=func, C=30, gamma=0.3, degree=2) # clf='ridge')
+            X, y = reg.predict(x_data[:data_num], x_data[data_num:data_num*2], y_data[:data_num], y_data[data_num:data_num*2],
+                               clf='svr', kernel='ridge', func=func, C=1000, gamma=0.1, degree=2) # clf='ridge')
 
             plt.scatter(range(0,50), y_means, color='r')
-            plt.scatter(range(0,50), y_mean_pluses, color='g')
-            plt.scatter(range(0,50), y_mean_minuses, color='g')
+            # plt.scatter(range(0,50), y_mean_pluses, color='g')
+            # plt.scatter(range(0,50), y_mean_minuses, color='g')
 
             plt.scatter(X, y, color='y')
 
@@ -66,7 +74,6 @@ class DataPlotter:
         return years
 
 def main():
-
     db_name, collection_name = 'db_1', 'mansion_shibuya_2015'
     client = pymongo.MongoClient()
     db = client[db_name]
