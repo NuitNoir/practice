@@ -6,6 +6,7 @@ RemoteSystemsTempFiles
 .DS_store
 .*project
 
+*.log
 
 Classification/DeepLearning/Chainer/chainer/
 

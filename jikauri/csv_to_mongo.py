@@ -10,7 +10,6 @@ import pymongo
 from bson.objectid import ObjectId
 import csv
 
-
 class FileSeeker:
     " ディレクトリ内のファイルを探しだすためのクラス "
     def __init__(self, ext="csv"):
@@ -49,7 +48,7 @@ class FileReader:
     def file_to_dict(self, filenames):
         " ファイルの中身をdict型にして返す. １行目のデータをキー名, ２行目以降を値として保存する. 数値にしたいデータの定義がハードコードなのでそれも引数で受け取れるようにすると汎用性が出る. "
         for filename in filenames:
-            with open(filename) as csvfile:
+            with open(filename, encoding='shift-jis') as csvfile:
                 reader = csv.reader(csvfile, delimiter=',')
                 # reader.next()
                 count = 0
@@ -132,8 +131,8 @@ class MongoWriter:
 
 def main():
     # dirname = "/Users/k.matsuura/Documents/mansion_db"
-    # dirname = "/Users/k.matsuura/Documents/mansion_db/2015/東京都/渋谷区"
-    dirname = "/Users/k.matsuura/Documents/mansion_db/2015"
+    dirname = "/Users/k.matsuura/Documents/mansion_db/2015/東京都/渋谷区"
+    # dirname = "/Users/k.matsuura/Documents/mansion_db/2013"
 
     ### get csv filenames
     file_seeker = FileSeeker(ext='csv')
@@ -142,7 +141,7 @@ def main():
     print("filename read end.")
 
     # mongo_writer = MongoWriter(db_name="db_all_2", collection_name="mansion")
-    mongo_writer = MongoWriter(db_name="db_all_4", collection_name="mansion_2015")
+    mongo_writer = MongoWriter(db_name="db_practice", collection_name="mansion_shibuya")
 
     mongo_writer.write_from_files(filenames)
 
