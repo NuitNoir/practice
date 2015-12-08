@@ -66,6 +66,8 @@ def main():
     dirname = "imgs/"
     finds = station
 
+    np.savetxt("data/shibuya_2015.txt", x_datum)
+
     X, regress_z, regress_Z = regress(x_datum, y_data, x_ranges)
 
     # data_plotter.plot_datum(x_datum, y_data, regress_Z, ylim, x_labels, dirname, finds, x_axes, y_axis, x_ranges)

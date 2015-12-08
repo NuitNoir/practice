@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c2470183-9746-44ff-bca5-9122594231c6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/jikauri/practice_main.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jikauri/imgs/渋谷駅_徒歩分数-平米単価.png" afterPath="$PROJECT_DIR$/jikauri/imgs/渋谷駅_徒歩分数-平米単価.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/practice.iml" afterPath="$PROJECT_DIR$/.idea/practice.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jikauri/csv_to_mongo.py" afterPath="$PROJECT_DIR$/jikauri/csv_to_mongo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jikauri/data.py" afterPath="$PROJECT_DIR$/jikauri/data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jikauri/plot_data.py" afterPath="$PROJECT_DIR$/jikauri/plot_data.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jikauri/regression.py" afterPath="$PROJECT_DIR$/jikauri/regression.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jikauri/practice_main.py" afterPath="$PROJECT_DIR$/jikauri/practice_main.py" />
     </list>
     <ignored path="practice.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +23,7 @@
     <favorites_list name="practice" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.15233698">
+    <splitter split-orientation="horizontal" split-proportion="0.27409118">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
@@ -47,8 +39,8 @@
           <file leaf-file-name="practice_main.log" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/jikauri/log/practice_main.log">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7123894">
-                  <caret line="66701" column="16" selection-start-line="66701" selection-start-column="16" selection-end-line="66701" selection-end-column="16" />
+                <state vertical-scroll-proportion="1.2654867">
+                  <caret line="67435" column="16" selection-start-line="67435" selection-start-column="16" selection-end-line="67435" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -67,14 +59,14 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.48845348">
+        <splitter split-orientation="horizontal" split-proportion="0.5799864">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file leaf-file-name="plot_data.py" pinned="false" current-in-tab="true">
+              <file leaf-file-name="plot_data.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/jikauri/plot_data.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.51766515">
-                      <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+                    <state vertical-scroll-proportion="-4.0185184">
+                      <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
                       <folding>
                         <element signature="e#120#134#0" expanded="true" />
                       </folding>
@@ -92,11 +84,11 @@
                   </provider>
                 </entry>
               </file>
-              <file leaf-file-name="practice_main.py" pinned="false" current-in-tab="false">
+              <file leaf-file-name="practice_main.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/jikauri/practice_main.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.0">
-                      <caret line="74" column="33" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
+                    <state vertical-scroll-proportion="0.4680851">
+                      <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
                       <folding>
                         <element signature="e#96#110#0" expanded="true" />
                       </folding>
@@ -107,8 +99,8 @@
               <file leaf-file-name="data.py" pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/jikauri/data.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="-10.0">
-                      <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+                    <state vertical-scroll-proportion="-13.333333">
+                      <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
                       <folding />
                     </state>
                   </provider>
@@ -121,8 +113,8 @@
               <file leaf-file-name="regression.py" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/jikauri/regression.py">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state vertical-scroll-proportion="0.37304965">
-                      <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+                    <state vertical-scroll-proportion="0.31914893">
+                      <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
                       <folding />
                     </state>
                   </provider>
@@ -132,7 +124,7 @@
                 <entry file="file://$PROJECT_DIR$/jikauri/data.py">
                   <provider selected="true" editor-type-id="text-editor">
                     <state vertical-scroll-proportion="0.0">
-                      <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+                      <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
                       <folding />
                     </state>
                   </provider>
@@ -195,9 +187,9 @@
         <option value="$PROJECT_DIR$/jikauri/data.py" />
         <option value="$PROJECT_DIR$/jikauri/log/plot_data_main.log" />
         <option value="$PROJECT_DIR$/jikauri/log/practice_main.log" />
-        <option value="$PROJECT_DIR$/jikauri/practice_main.py" />
-        <option value="$PROJECT_DIR$/jikauri/plot_data.py" />
         <option value="$PROJECT_DIR$/jikauri/regression.py" />
+        <option value="$PROJECT_DIR$/jikauri/plot_data.py" />
+        <option value="$PROJECT_DIR$/jikauri/practice_main.py" />
       </list>
     </option>
   </component>
@@ -305,6 +297,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="practice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="practice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jikauri" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -312,7 +322,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../laboratory" />
     <property name="recentsLimit" value="5" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/kyota/practice/asign0501/affin.py" />
     <property name="FullScreen" value="true" />
@@ -587,7 +597,19 @@
       <option name="project" value="LOCAL" />
       <updated>1448966785020</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="plot cloud point data and regressed data">
+      <created>1449568381137</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1449568381138</updated>
+    </task>
+    <task id="LOCAL-00004" summary="plot cloud point data and regressed data">
+      <created>1449569886449</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1449569886449</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -605,6 +627,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09739583" sideWeight="0.67121416" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891566" sideWeight="0.49753347" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29041627" sideWeight="0.36927083" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32623428" sideWeight="0.49270833" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33688286" sideWeight="0.5833333" order="9" side_tool="false" content_ui="tabs" />
@@ -615,7 +638,6 @@
       <window_info id="Armory" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36768803" sideWeight="0.6088795" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -639,7 +661,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DeepLearningライブラリChainerを使用した文字認識サンプルコード" />
     <MESSAGE value="svr 追加" />
-    <option name="LAST_COMMIT_MESSAGE" value="svr 追加" />
+    <MESSAGE value="plot cloud point data and regressed data" />
+    <option name="LAST_COMMIT_MESSAGE" value="plot cloud point data and regressed data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -665,13 +688,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cpp_practice/asign0529/cube.skel">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4057971">
-          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/cpp_practice/asign0522/python/transform.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -935,14 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jikauri/data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.0">
-          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.pyenv/versions/anaconda3-2.4.0/python.app/Contents/lib/python3.5/site-packages/sklearn/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.3916554">
@@ -1001,36 +1009,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jikauri/log/practice_main.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7123894">
-          <caret line="66701" column="16" selection-start-line="66701" selection-start-column="16" selection-end-line="66701" selection-end-column="16" />
+        <state vertical-scroll-proportion="1.2654867">
+          <caret line="67435" column="16" selection-start-line="67435" selection-start-column="16" selection-end-line="67435" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jikauri/practice_main.py">
+    <entry file="file://$PROJECT_DIR$/jikauri/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="33" selection-start-line="74" selection-start-column="33" selection-end-line="74" selection-end-column="33" />
-          <folding>
-            <element signature="e#96#110#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="-13.333333">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jikauri/regression.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37304965">
-          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.31914893">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jikauri/plot_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51766515">
-          <caret line="48" column="33" selection-start-line="48" selection-start-column="33" selection-end-line="48" selection-end-column="33" />
+        <state vertical-scroll-proportion="-4.0185184">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
           <folding>
             <element signature="e#120#134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jikauri/data/shibuya_2015.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jikauri/practice_main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4680851">
+          <caret line="68" column="48" selection-start-line="68" selection-start-column="48" selection-end-line="68" selection-end-column="48" />
+          <folding>
+            <element signature="e#96#110#0" expanded="true" />
           </folding>
         </state>
       </provider>
