@@ -34,7 +34,7 @@ class DataPlotter:
 
     def plot_datum_3d(self, x_datum: list, z_data: list, Z: list, zlim: tuple, xlabels: str, dirname: str,
                       finds: str, x_axes: [str], z_axis: str, x_ranges: tuple,
-                      type='surface', show=False, color=None, fig=None, ax=None) -> "fig, ax":
+                      type='surface', show=False, alpha=1, color=None, fig=None, ax=None) -> "fig, ax":
         " plot x_datum 3D. x_dastum ckolumn must be 2. "
         x_datum = np.array(x_datum)
         rows, cols = x_datum.shape
@@ -48,7 +48,7 @@ class DataPlotter:
                          vmax = 10000, show=show, type=type)
         elif (type == 'scatter'):
             fig, ax = self.plot_3d(x_datum[:, 0], x_datum[:, 1], z_data, [], xlabels, xrange=xlim, yrange=ylim,
-                                   vmax = 10000, show=show, type=type, alpha=0.1, color=color, fig=fig, ax=ax)
+                                   vmax = 10000, show=show, type=type, alpha=alpha, color=color, fig=fig, ax=ax)
             # self.plot_3d(X1.flatten, X2.flatten, Z.flatten, [], xlabels, xrange=xlim, yrange=ylim,
             #              vmax = 10000, show=True, type=type, alpha=1)
         return fig, ax

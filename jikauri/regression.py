@@ -17,12 +17,12 @@ class Regression:
     def predict(self, train_x, test_x, train_y, test_y, x_ranges, clf_name='ridge', kernel='rbf', func=None, C=1, gamma='auto', degree=3):
         data = dat.Data()
         Z = []
-        if (clf_name.count('3d')):
-	        X = np.array(train_x)
-	        test_X = np.array(test_x)
-        else:
-	        X       = data.x_to_X(train_x)
-	        test_X  = data.x_to_X(test_x)
+        # if (clf_name.count('3d')):
+        X = np.array(train_x)
+        test_X = np.array(test_x)
+        # else:
+		 #    X       = data.x_to_X(train_x)
+		 #    test_X  = data.x_to_X(test_x)
         y = []
         train_x = np.array(train_x)
         train_y = np.array(train_y)

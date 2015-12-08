@@ -29,6 +29,9 @@ def regress(x_datum: list, z_data: list, x_ranges: list, type='ridge') -> "X, y"
     # X, y = reg.predict(x_data[:data_num], x_data[data_num:data_num*2], y_data[:data_num], y_data[data_num:data_num*2], clf='polyfit', kernel='linear', func=func, C=30, gamma=0.3, degree=2) # clf='ridge')
     X, y, regress_Z = reg.predict(x_datum[:offset+data_num], x_datum[offset+data_num:offset+data_num*2], z_data[:offset+data_num], z_data[offset+data_num:offset+data_num*2], x_ranges,
                        clf_name='curvefit3d', kernel='rbf', func=func, C=1000, gamma=0.1, degree=2) # clf='ridge')
+    # X, y, regress_Z = reg.predict(x_datum[:offset+data_num], x_datum[offset+data_num:offset+data_num*2], z_data[:offset+data_num], z_data[offset+data_num:offset+data_num*2], x_ranges,
+    #                    clf_name='svr', kernel='rbf', func=func, C=1000, gamma=0.1, degree=2) # clf='ridge')
+
     return X, y, regress_Z
 
 def main():
@@ -71,12 +74,12 @@ def main():
     # filename = dirname+"3D/"+finds+'_'+x_axes[0]+'&'+x_axes[1]+'-'+y_axis+"_mean.png"
     # fig.savefig(filename)
 
-	## plot regressed data points
+    ## plot regressed data points
     fig, ax = data_plotter.plot_datum_3d(X, regress_z, regress_Z, ylim, x_labels, dirname, finds, x_axes, y_axis, x_ranges,
-                                         type='scatter', color='r')
-	## plot data points
+                                         type='scatter', color='r', alpha=1)
+    ## plot data points
     fig, ax = data_plotter.plot_datum_3d(x_datum, y_data, regress_Z, ylim, x_labels, dirname, finds, x_axes, y_axis, x_ranges,
-                                         type='scatter', fig=fig, ax=ax, show=True)
+                                         type='scatter', fig=fig, ax=ax, show=True, alpha=0.1)
     filename = dirname+"3D/"+finds+'_'+x_axes[0]+'&'+x_axes[1]+'-'+y_axis+"_scatter.png"
     fig.savefig(filename)
 
