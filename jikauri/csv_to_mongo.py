@@ -3,12 +3,23 @@
 #
 # ~/.../csv_to_mongo.py
 #
+#  main関数内で
+# 1. mongo の db_name, collection_name を指定,
+# 2. 読み込み元 csv ファイルのディレクトリを dirname に指定
+# することで指定ディレクトリ以下にある ext で終わるファイルをmongo に出力する.
+#
+
 
 import os
 import re
 import pymongo
 from bson.objectid import ObjectId
 import csv
+import subprocess
+import os
+import builtins
+
+import string
 
 class FileSeeker:
     " ディレクトリ内のファイルを探しだすためのクラス "
@@ -35,11 +46,13 @@ class FileReader:
     def shiftjis_to_utf8(self, strs):
         " shift-jis からutf-8への変換を行う. 変換に失敗する文字を弾いたりもしている. "
         data = []
-        for str in strs:
+        for st in strs:
             val = ""
             try:
-                str = str.strip('.')
-                val = unicode(str, 'shift-jis').encode('utf-8')
+                st = st.strip('.')
+                # val = str(st, 'shift-jis').encode('utf-8')
+                val = str(st)
+                # val = st.decode('utf-8')
             except UnicodeDecodeError as e:
                 print(e)
             data.append(val)
@@ -145,9 +158,26 @@ def main():
 
     mongo_writer.write_from_files(filenames)
 
+# def csv_import():
+#     " mongo のcsv import 機能を使う.  "
+#     # dirname = "/Users/k.matsuura/Documents/mansion_db"
+#     dirname = "/Users/k.matsuura/Documents/mansion_db/2015/東京都/渋谷区"
+#     file_seeker = FileSeeker(ext='csv')
+#     file_seeker.seek_dir(dirname)
+#     filenames = file_seeker.filenames
+#
+#     db_name = "db_import"
+#     collection_name = "mansion_shibuya"
+#     mongo_writer = MongoWriter(db_name=db_name, collection_name=collection_name)
+#
+#     # mongoimport --db users --collection contacts --type csv --file /opt/backups/contacts.csv --headerline
+#     for filename in filenames:
+#         command = "mongoimport --db "+db_name+" --collection "+collection_name+" --type csv --file "+filename+" --headerline"
+#         print(command)
+#         os.system(command)
+
 if __name__ == '__main__':
     main()
-
 
 
 
