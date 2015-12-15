@@ -5,6 +5,7 @@ RemoteSystemsTempFiles
 .project
 .DS_store
 .*project
+*.png
 
 *.log
 

@@ -22,16 +22,18 @@ def curve_fit_func(x: list, a, b0, b1, c):
 
 class DataPlotter:
     " データプロットクラス "
-    def regress(self, x_datum: list, z_data: list, x_ranges: list, type='ridge') -> "X, y":
-        reg = regression.Regression()
-        func = curve_fit_func
-        offset      = 1000
-        data_num    = 1000
-        # X, y = reg.predict(x_data[:data_num], x_data[data_num:data_num*2], y_data[:data_num], y_data[data_num:data_num*2], clf='polyfit', kernel='linear', func=func, C=30, gamma=0.3, degree=2) # clf='ridge')
-        X, y, regress_Z = reg.predict(x_datum[:offset+data_num], x_datum[offset+data_num:offset+data_num*2], z_data[:offset+data_num], z_data[offset+data_num:offset+data_num*2], x_ranges,
-                           clf_name='curvefit3d', kernel='rbf', func=func, C=1000, gamma=0.1, degree=2) # clf='ridge')
-        return X, y, regress_Z
-
+    # def regress(self, x_datum: list, z_data: list, x_ranges: list, type='ridge') -> "X, y":
+    #     reg = regression.Regression()
+    #     func = curve_fit_func
+    #     offset      = 1000
+    #     data_num    = 1000
+    #     # X, y = reg.predict(x_data[:data_num], x_data[data_num:data_num*2], y_data[:data_num], y_data[data_num:data_num*2], clf='polyfit', kernel='linear', func=func, C=30, gamma=0.3, degree=2) # clf='ridge')
+    #
+    #     X, y, regress_Z = reg.predict(x_datum[:offset+data_num], x_datum[offset+data_num:offset+data_num*2], z_data[:offset+data_num], z_data[offset+data_num:offset+data_num*2], x_ranges,
+    #                                   clf_name='curvefit3d', kernel='rbf', func=func, C=C, gamma=gamma, degree=2) # clf='ridge')
+    #
+    #     return X, y, regress_Z
+    #
     def plot_datum_3d(self, x_datum: list, z_data: list, Z: list, zlim: tuple, xlabels: str, dirname: str,
                       finds: str, x_axes: [str], z_axis: str, x_ranges: tuple,
                       type='surface', show=False, alpha=1, color=None, fig=None, ax=None) -> "fig, ax":
@@ -95,7 +97,6 @@ class DataPlotter:
         if (show is True):
         	plt.show()
         return fig, ax
-
 
     def get_means(self, x_range, x_data, y_data):
         y_mean_pluses = []

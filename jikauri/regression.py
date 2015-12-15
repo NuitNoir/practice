@@ -14,9 +14,17 @@ import math
 import scipy
 import logging
 class Regression:
-    def predict(self, train_x, test_x, train_y, test_y, x_ranges, clf_name='ridge', kernel='rbf', func=None, C=1, gamma='auto', degree=3):
+    def predict(self, train_x, test_x, train_y, test_y, x_ranges,
+                clf_name='ridge', kernel='rbf', func=None, C=1, gamma='auto', degree=3):
         data = dat.Data()
+        params = []
+        rmse = 0
         Z = []
+        x_ranges_arr = []
+        for y in  x_ranges[1]:
+            for x in  x_ranges[0]:
+                x_ranges_arr.append([y, x])
+        x_ranges_arr = np.array(x_ranges_arr)
         # if (clf_name.count('3d')):
         X = np.array(train_x)
         test_X = np.array(test_x)
@@ -30,28 +38,28 @@ class Regression:
         logging.debug("train_y shape = "+str(train_y.shape))
         if (clf_name.count('fit')):
             if (clf_name == 'polyfit'):
-                params = np.polyfit(train_x, train_y, 3)
+                params = np.polyfit(train_x, train_y, degree)
                 # print(params)
                 logging.debug("polyfit parameter = "+str(params))
                 p = np.poly1d(params)
                 y = [p(x) for x in test_x]
             elif (clf_name == 'curvefit'):
                 # popt, pcov = scipy.optimize.curve_fit(func, train_x, train_y, p0=[1,1,3000,1,1,1])
-                popt, pcov = scipy.optimize.curve_fit(func, train_x, train_y, p0=[1,1,1,3000])
-                logging.debug("curve_fit parameter = "+str(popt))
-                # y = [func(x, popt[0], popt[1], popt[2], popt[3], popt[4], popt[5]) for x in test_x]
-                y = [func(x, popt[0], popt[1], popt[2], popt[3]) for x in test_x]
+                params, pcov = scipy.optimize.curve_fit(func, train_x, train_y)#, p0=[3000, 1,1,1,1,1])
+                logging.debug("curve_fit parameter = "+str(params))
+                y = [func(x, params[0], params[1], params[2], params[3], params[4], params[5]) for x in test_x]
+                # y = [func(x, params[0], params[1], params[2], params[3], params[4]) for x in test_x]
             elif (clf_name == 'curvefit3d'):
                 # popt, pcov = scipy.optimize.curve_fit(func, train_x, train_y, p0=[1,1,3000,1,1,1])
-                popt, pcov = scipy.optimize.curve_fit(func, train_x, train_y, p0=[100,-1,-1,3000])
+                popt, pcov = scipy.optimize.curve_fit(func, train_x, train_y, p0=[100,-1,-1, -1, -1, 3000])
                 logging.debug("curve_fit parameter = "+str(popt))
                 # y = [func(x, popt[0], popt[1], popt[2], popt[3]) for x in test_x]
                 for x2 in test_X[:,1]:
                     for x1 in test_X[:,0]:
-                        y = func([[x1, x2]], popt[0], popt[1], popt[2], popt[3])
+                        y = func([[x1, x2]], popt[0], popt[1], popt[2], popt[3], popt[4], popt[5])
         else:
             if (clf_name.count('svr')):
-                clf = svm.SVR(C=C, gamma=gamma, degree=degree)
+                clf = svm.SVR(C=C, gamma=gamma)
                 logging.debug('C = '+str(C)+' gamma = '+str(gamma)+' degree = '+str(degree ))
             elif (clf_name == 'ridgecv'):
                 clf = linear_model.RidgeCV
@@ -59,7 +67,8 @@ class Regression:
                 clf = linear_model.Ridge()
             clf.fit(X, train_y)
             # if (clf_name.count('3d')):
-	         #    Z = clf.predict(x_ranges)
+	         #    z = clf.predict(x_ranges_arr)
+
             y = clf.predict(test_X)
             logging.debug('regression y = '+str(y))
         try:
@@ -68,7 +77,7 @@ class Regression:
         except Exception:
 	        pass
 
-        return test_X, y, Z
+        return test_X, y, Z, rmse, clf, params
 
 
 
